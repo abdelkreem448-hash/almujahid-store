@@ -292,31 +292,10 @@ border-radius:5px;
 cursor:pointer;
 }
 
-.remove-btn{
-background:red;
-color:white;
-border:none;
-padding:6px 10px;
-border-radius:5px;
-cursor:pointer;
-margin-top:10px;
-}
-
 .total{
 font-size:22px;
 font-weight:bold;
 margin-top:20px;
-}
-
-.clear-btn{
-background:#dc2626;
-color:white;
-padding:14px;
-border:none;
-width:100%;
-border-radius:10px;
-margin-top:20px;
-cursor:pointer;
 }
 
 .toast{
@@ -501,13 +480,6 @@ id="total">
 الإجمالي: 0
 
 </div>
-
-<button class="clear-btn"
-onclick="clearCart()">
-
-تفريغ السلة
-
-</button>
 
 </div>
 
@@ -767,13 +739,6 @@ onclick="increaseQty(${index})">
 
 </div>
 
-<button class="remove-btn"
-onclick="removeItem(${index})">
-
-حذف
-
-</button>
-
 </div>
 
 `;
@@ -806,31 +771,7 @@ if(cart[index].qty > 1){
 
 cart[index].qty--;
 
-}else{
-
-cart.splice(index,1);
-
 }
-
-saveData();
-
-renderCart();
-
-}
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-saveData();
-
-renderCart();
-
-}
-
-function clearCart(){
-
-cart=[];
 
 saveData();
 
