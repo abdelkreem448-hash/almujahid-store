@@ -1,284 +1,1019 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مستشفى جوجو - مدني حي المنيرة</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>متجر المجاهد</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Tajawal',sans-serif}
-    body{background:#f5fafd;color:#222;line-height:1.8}
-    header{background:linear-gradient(135deg,#0077b6,#00b4d8);color:white;padding:20px;text-align:center}
-    header h1{font-size:2rem;margin-bottom:5px}
-    nav{background:#023e7d;display:flex;justify-content:center;flex-wrap:wrap;gap:15px;padding:10px}
-    nav a{color:white;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:6px}
-    nav a:hover{background:#00b4d8}
-    section{padding:40px 20px;max-width:1100px;margin:auto}
-    section h2{color:#0077b6;margin-bottom:15px;border-right:4px solid #00b4d8;padding-right:10px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-    .card{background:white;border-radius:12px;padding:20px;box-shadow:0 4px 10px rgba(0,0,0,0.08)}
-    .btn{display:inline-block;background:#00b4d8;color:white;padding:12px 25px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:10px;border:none;cursor:pointer}
-    .btn:hover{background:#0096c7}
-    .btn-danger{background:#d90429}
-    .btn-danger:hover{background:#b10321}
-    .btn-small{padding:6px 12px;font-size:14px}
-    .contact{background:#e0f7fa;text-align:center}
-    footer{background:#023e7d;color:white;text-align:center;padding:15px;margin-top:30px}
-    .whatsapp{position:fixed;bottom:20px;left:20px;background:#25d366;color:white;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;box-shadow:0 4px 10px rgba(0,0,0,0.3)}
-    form{display:grid;gap:15px}
-    input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:16px}
-    input:focus,select:focus,textarea:focus{outline:none;border-color:#00b4d8}
-    label{font-weight:600;color:#023e7d}
-    
-    /* Admin Panel */
-    #adminBtn{position:fixed;top:20px;left:20px;background:#023e7d;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer;z-index:1000}
-    #adminPanel{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:999;overflow-y:auto}
-    #adminPanel .panel-content{background:white;max-width:700px;margin:50px auto;padding:30px;border-radius:12px}
-    .admin-section{margin-bottom:30px;padding-bottom:20px;border-bottom:1px solid #eee}
-    .list-item{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f8f9fa;border-radius:6px;margin-bottom:8px}
-    .hidden{display:none}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma;
+}
+
+body{
+background:#f3f4f6;
+direction:rtl;
+transition:.3s;
+overflow-x:hidden;
+}
+
+.dark{
+background:#111827;
+color:white;
+}
+
+header{
+background:#111827;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-icons{
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.icon-btn{
+position:relative;
+font-size:24px;
+cursor:pointer;
+}
+
+.cart-count{
+position:absolute;
+top:-8px;
+right:-8px;
+background:red;
+color:white;
+width:20px;
+height:20px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:12px;
+}
+
+.hero{
+height:350px;
+background:
+linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),
+url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1200');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.hero-content p{
+font-size:22px;
+margin-bottom:25px;
+}
+
+.hero-btn{
+background:#25D366;
+padding:15px 30px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+font-size:18px;
+display:inline-block;
+}
+
+.container{
+padding:30px 20px;
+}
+
+.panel{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:30px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.dark .panel{
+background:#1f2937;
+}
+
+.panel h2{
+margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border-radius:10px;
+border:1px solid #ccc;
+outline:none;
+font-size:16px;
+}
+
+.add-btn{
+background:#111827;
+color:white;
+padding:14px;
+border:none;
+width:100%;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+.top-bar{
+display:flex;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.top-bar input,
+.top-bar select{
+flex:1;
+}
+
+.products{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.product{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.dark .product{
+background:#1f2937;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.product-content{
+padding:15px;
+}
+
+.product-content h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:24px;
+color:#16a34a;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.rating{
+color:gold;
+margin-bottom:10px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.cart-btn{
+background:#2563eb;
+color:white;
+}
+
+.buy-btn{
+background:#111827;
+color:white;
+text-decoration:none;
+text-align:center;
+}
+
+.delete-btn{
+background:#dc2626;
+color:white;
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+margin-top:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.cart-box{
+position:fixed;
+top:0;
+left:-100%;
+width:350px;
+height:100%;
+background:white;
+padding:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+overflow:auto;
+transition:.4s;
+z-index:99999;
+}
+
+.dark .cart-box{
+background:#1f2937;
+}
+
+.cart-box.active{
+left:0;
+}
+
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.close-btn{
+background:red;
+color:white;
+border:none;
+width:35px;
+height:35px;
+border-radius:50%;
+cursor:pointer;
+font-size:18px;
+}
+
+.cart-item{
+border-bottom:1px solid #ccc;
+padding:10px 0;
+margin-bottom:10px;
+}
+
+.qty-box{
+display:flex;
+align-items:center;
+gap:10px;
+margin-top:10px;
+}
+
+.qty-btn{
+background:#111827;
+color:white;
+border:none;
+width:25px;
+height:25px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+margin-top:20px;
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#111827;
+color:white;
+padding:15px 25px;
+border-radius:10px;
+display:none;
+z-index:999999;
+}
+
+footer{
+background:#111827;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:35px;
+}
+
+.top-bar{
+flex-direction:column;
+}
+
+.cart-box{
+width:100%;
+}
+
+}
+
 </style>
 </head>
+
 <body>
 
-<button id="adminBtn">⚙️ لوحة التحكم</button>
+<header>
 
-<div id="adminPanel">
-    <div class="panel-content">
-        <h2>لوحة التحكم</h2>
-        
-        <div class="admin-section">
-            <h3>إدارة الأقسام</h3>
-            <div id="deptList"></div>
-            <input type="text" id="newDept" placeholder="اسم القسم الجديد">
-            <button class="btn btn-small" onclick="addDept()">إضافة قسم</button>
-        </div>
-        
-        <div class="admin-section">
-            <h3>إدارة الأطباء</h3>
-            <div id="doctorList"></div>
-            <input type="text" id="newDoctorName" placeholder="اسم الطبيب">
-            <input type="text" id="newDoctorSpec" placeholder="التخصص">
-            <button class="btn btn-small" onclick="addDoctor()">إضافة طبيب</button>
-        </div>
-        
-        <button class="btn" onclick="closeAdmin()">إغلاق</button>
-        <button class="btn btn-danger" onclick="resetData()">إرجاع للإعدادات الأصلية</button>
-    </div>
+<div class="logo">
+المجاهد
 </div>
 
-<header>
-    <h1>مستشفى جوجو</h1>
-    <p>رعاية طبية متكاملة - مدني، حي المنيرة</p>
+<div class="nav-icons">
+
+<div class="icon-btn"
+onclick="toggleDark()">
+
+<i class="fas fa-moon"></i>
+
+</div>
+
+<div class="icon-btn"
+onclick="openCart()">
+
+<i class="fas fa-shopping-cart"></i>
+
+<div class="cart-count"
+id="cartCount">
+
+0
+
+</div>
+
+</div>
+
+</div>
+
 </header>
 
-<nav>
-    <a href="#about">عن المستشفى</a>
-    <a href="#departments">الأقسام</a>
-    <a href="#doctors">الأطباء</a>
-    <a href="#services">الخدمات</a>
-    <a href="#booking">حجز موعد</a>
-    <a href="#contact">اتصل بنا</a>
-</nav>
+<section class="hero">
 
-<section id="about">
-    <h2>عن المستشفى</h2>
-    <p>مستشفى جوجو مؤسسة طبية حديثة في مدينة مدني حي المنيرة، نسعى لتقديم أفضل الخدمات الصحية بمعايير عالية وفريق طبي مؤهل. هدفنا راحة المريض وسلامته أولاً.</p>
+<div class="hero-content">
+
+<h1>
+متجر المجاهد
+</h1>
+
+<p>
+أفضل المنتجات بأفضل الأسعار
+</p>
+
+<a class="hero-btn"
+href="https://wa.me/249963296885">
+
+تواصل واتساب
+
+</a>
+
+</div>
+
 </section>
 
-<section id="departments">
-    <h2>الأقسام الطبية</h2>
-    <div class="grid" id="departmentsGrid"></div>
-</section>
+<div class="container">
 
-<section id="doctors">
-    <h2>طاقمنا الطبي</h2>
-    <div class="grid" id="doctorsGrid"></div>
-</section>
+<div class="panel">
 
-<section id="services">
-    <h2>خدماتنا</h2>
-    <div class="grid">
-        <div class="card"><h3>العيادات الخارجية</h3><p>حجز موعد مع الطبيب المناسب في أي وقت.</p></div>
-        <div class="card"><h3>العناية المركزة</h3><p>وحدة عناية مركزة مجهزة بأحدث الأجهزة.</p></div>
-        <div class="card"><h3>الصيدلية</h3><p>صيدلية داخلية توفر الأدوية على مدار الساعة.</p></div>
-    </div>
-</section>
+<h2>
+إضافة منتج
+</h2>
 
-<section id="booking">
-    <h2>حجز موعد</h2>
-    <div class="card">
-        <form id="bookingForm">
-            <div>
-                <label>الاسم الكامل</label>
-                <input type="text" id="name" required placeholder="اكتب اسمك">
-            </div>
-            <div>
-                <label>رقم الهاتف</label>
-                <input type="tel" id="phone" required placeholder="09xxxxxxxx">
-            </div>
-            <div>
-                <label>القسم المطلوب</label>
-                <select id="department" required></select>
-            </div>
-            <div>
-                <label>الطبيب المفضل</label>
-                <select id="doctor"></select>
-            </div>
-            <div>
-                <label>التاريخ المناسب</label>
-                <input type="date" id="date" required>
-            </div>
-            <div>
-                <label>ملاحظات</label>
-                <textarea id="notes" rows="3" placeholder="اشرح حالتك باختصار"></textarea>
-            </div>
-            <button type="submit" class="btn">إرسال الحجز عبر الواتساب</button>
-        </form>
-    </div>
-</section>
+<input type="text"
+id="title"
+placeholder="اسم المنتج">
 
-<section id="contact" class="contact">
-    <h2>تواصل معنا</h2>
-    <p><strong>العنوان:</strong> مدني - حي المنيرة</p>
-    <p><strong>الهاتف:</strong> 249963296885</p>
-    <a class="btn" href="https://wa.me/249963296885" target="_blank">تحدث معنا على واتساب</a>
-</section>
+<input type="text"
+id="price"
+placeholder="السعر">
+
+<textarea
+id="desc"
+placeholder="وصف المنتج"></textarea>
+
+<input type="text"
+id="category"
+placeholder="القسم">
+
+<input type="file"
+id="image"
+accept="image/*">
+
+<button class="add-btn"
+onclick="addProduct()">
+
+إضافة المنتج
+
+</button>
+
+</div>
+
+<div class="top-bar">
+
+<input type="text"
+id="search"
+placeholder="بحث عن منتج">
+
+<select id="filter">
+
+<option value="all">
+كل الأقسام
+</option>
+
+</select>
+
+</div>
+
+<div class="products"
+id="products">
+</div>
+
+</div>
+
+<div class="cart-box"
+id="cartBox">
+
+<div class="cart-header">
+
+<h2>
+سلة المشتريات
+</h2>
+
+<button class="close-btn"
+onclick="closeCart()">
+
+✕
+
+</button>
+
+</div>
+
+<div id="cartItems">
+</div>
+
+<div class="total"
+id="total">
+
+الإجمالي: 0
+
+</div>
+
+</div>
+
+<div class="toast"
+id="toast">
+تمت العملية
+</div>
 
 <footer>
-    <p>© 2026 مستشفى جوجو - جميع الحقوق محفوظة</p>
+
+<p>
+📍 مدني - حي المنيرة
+</p>
+
+<p>
+📞 249963296885+
+</p>
+
+<p>
+© متجر المجاهد 2026
+</p>
+
 </footer>
 
-<a class="whatsapp" href="https://wa.me/249963296885" target="_blank">💬</a>
-
 <script>
-// البيانات الافتراضية
-const defaultData = {
-    departments: [
-        {name:"قسم الطوارئ", desc:"يعمل 24 ساعة لاستقبال الحالات الحرجة والطارئة."},
-        {name:"قسم الباطنية", desc:"تشخيص وعلاج أمراض الجهاز الهضمي والتنفسي والسكري."},
-        {name:"قسم الجراحة", desc:"جراحات عامة وجراحات المناظير بأحدث التقنيات."},
-        {name:"قسم النساء والتوليد", desc:"متابعة الحمل والولادة ورعاية الأم والطفل."},
-        {name:"قسم الأطفال", desc:"رعاية متخصصة لحديثي الولادة والأطفال."},
-        {name:"قسم الأشعة والمختبر", desc:"فحوصات مخبرية وأشعة سينية وموجات صوتية دقيقة."}
-    ],
-    doctors: [
-        {name:"د. أحمد محمد", spec:"استشاري الباطنية"},
-        {name:"د. سارة علي", spec:"أخصائية النساء والتوليد"},
-        {name:"د. خالد عبدالله", spec:"استشاري الجراحة العامة"}
-    ]
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+let cart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveData(){
+
+try{
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+}catch(error){
+
+alert(
+"التخزين ممتلئ، احذف بعض المنتجات أو استخدم صور أصغر"
+);
+
+}
+
+}
+
+function showToast(msg){
+
+let toast =
+document.getElementById("toast");
+
+toast.innerText = msg;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display = "none";
+
+},2000);
+
+}
+
+function compressImage(file,callback){
+
+let reader =
+new FileReader();
+
+reader.readAsDataURL(file);
+
+reader.onload = function(event){
+
+let img = new Image();
+
+img.src = event.target.result;
+
+img.onload = function(){
+
+let canvas =
+document.createElement("canvas");
+
+let ctx =
+canvas.getContext("2d");
+
+let maxWidth = 600;
+
+let scale =
+maxWidth / img.width;
+
+canvas.width = maxWidth;
+
+canvas.height =
+img.height * scale;
+
+ctx.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+let compressed =
+canvas.toDataURL(
+"image/jpeg",
+0.7
+);
+
+callback(compressed);
+
 };
 
-// تحميل البيانات من localStorage أو الافتراضية
-let data = JSON.parse(localStorage.getItem('hospitalData')) || defaultData;
+};
 
-// عرض البيانات
-function renderAll(){
-    // الأقسام
-    document.getElementById('departmentsGrid').innerHTML = data.departments.map(d => 
-        `<div class="card"><h3>${d.name}</h3><p>${d.desc}</p></div>`
-    ).join('');
-    
-    // الأطباء
-    document.getElementById('doctorsGrid').innerHTML = data.doctors.map(d => 
-        `<div class="card"><h3>${d.name}</h3><p>${d.spec}</p></div>`
-    ).join('');
-    
-    // فورم الحجز
-    document.getElementById('department').innerHTML = '<option value="">اختر القسم</option>' + 
-        data.departments.map(d => `<option>${d.name}</option>`).join('');
-    
-    document.getElementById('doctor').innerHTML = '<option value="">أي طبيب متاح</option>' + 
-        data.doctors.map(d => `<option>${d.name}</option>`).join('');
-    
-    // لوحة التحكم
-    document.getElementById('deptList').innerHTML = data.departments.map((d,i) => 
-        `<div class="list-item"><span>${d.name}</span><button class="btn-small btn-danger" onclick="deleteDept(${i})">حذف</button></div>`
-    ).join('');
-    
-    document.getElementById('doctorList').innerHTML = data.doctors.map((d,i) => 
-        `<div class="list-item"><span>${d.name} - ${d.spec}</span><button class="btn-small btn-danger" onclick="deleteDoctor(${i})">حذف</button></div>`
-    ).join('');
 }
 
-// حفظ البيانات
-function saveData(){
-    localStorage.setItem('hospitalData', JSON.stringify(data));
-    renderAll();
+function addProduct(){
+
+let title =
+document.getElementById("title").value.trim();
+
+let price =
+document.getElementById("price").value.trim();
+
+let desc =
+document.getElementById("desc").value.trim();
+
+let category =
+document.getElementById("category").value.trim();
+
+let image =
+document.getElementById("image").files[0];
+
+if(
+!title ||
+!price ||
+!desc ||
+!category ||
+!image
+){
+
+alert("املأ جميع الحقول");
+
+return;
+
 }
 
-// إدارة الأقسام
-function addDept(){
-    let name = document.getElementById('newDept').value.trim();
-    if(name){
-        data.departments.push({name:name, desc:""});
-        document.getElementById('newDept').value = '';
-        saveData();
-    }
-}
+compressImage(image,function(compressedImage){
 
-function deleteDept(i){
-    if(confirm('متأكد من الحذف؟')){
-        data.departments.splice(i,1);
-        saveData();
-    }
-}
+products.push({
 
-// إدارة الأطباء
-function addDoctor(){
-    let name = document.getElementById('newDoctorName').value.trim();
-    let spec = document.getElementById('newDoctorSpec').value.trim();
-    if(name && spec){
-        data.doctors.push({name:name, spec:spec});
-        document.getElementById('newDoctorName').value = '';
-        document.getElementById('newDoctorSpec').value = '';
-        saveData();
-    }
-}
+title,
+price,
+desc,
+category,
+image:compressedImage
 
-function deleteDoctor(i){
-    if(confirm('متأكد من الحذف؟')){
-        data.doctors.splice(i,1);
-        saveData();
-    }
-}
-
-// لوحة التحكم
-document.getElementById('adminBtn').onclick = () => document.getElementById('adminPanel').style.display = 'block';
-function closeAdmin(){ document.getElementById('adminPanel').style.display = 'none'; }
-
-function resetData(){
-    if(confirm('ده حيرجع كل شيء للأصل. متأكد؟')){
-        localStorage.removeItem('hospitalData');
-        data = defaultData;
-        saveData();
-    }
-}
-
-// فورم الحجز
-document.getElementById('bookingForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    
-    let name = document.getElementById('name').value;
-    let phone = document.getElementById('phone').value;
-    let department = document.getElementById('department').value;
-    let doctor = document.getElementById('doctor').value;
-    let date = document.getElementById('date').value;
-    let notes = document.getElementById('notes').value;
-    
-    let message = `طلب حجز موعد جديد:%0A
-الاسم: ${name}%0A
-الهاتف: ${phone}%0A
-القسم: ${department}%0A
-الطبيب: ${doctor || 'أي طبيب متاح'}%0A
-التاريخ: ${date}%0A
-ملاحظات: ${notes || 'لا يوجد'}`;
-    
-    let whatsappURL = `https://wa.me/249963296885?text=${message}`;
-    window.open(whatsappURL, '_blank');
 });
 
-// التشغيل الأول
-renderAll();
+saveData();
+
+renderProducts();
+
+updateFilter();
+
+showToast("تمت إضافة المنتج");
+
+document.getElementById("title").value="";
+document.getElementById("price").value="";
+document.getElementById("desc").value="";
+document.getElementById("category").value="";
+document.getElementById("image").value="";
+
+});
+
+}
+
+function deleteProduct(index){
+
+let confirmDelete =
+confirm("هل تريد حذف المنتج؟");
+
+if(confirmDelete){
+
+products.splice(index,1);
+
+saveData();
+
+renderProducts();
+
+updateFilter();
+
+showToast("تم حذف المنتج");
+
+}
+
+}
+
+function renderProducts(){
+
+let box =
+document.getElementById("products");
+
+box.innerHTML = "";
+
+products.forEach((product,index)=>{
+
+box.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-content">
+
+<h3>
+${product.title}
+</h3>
+
+<div class="price">
+${product.price}
+</div>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>
+${product.desc}
+</p>
+
+<p>
+📦 ${product.category}
+</p>
+
+<div class="actions">
+
+<button class="btn cart-btn"
+onclick="addToCart(${index})">
+
+أضف للسلة
+
+</button>
+
+<a class="btn buy-btn"
+href="https://wa.me/249963296885?text=أريد طلب ${product.title}">
+
+شراء
+
+</a>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteProduct(${index})">
+
+حذف المنتج
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function addToCart(index){
+
+let existing =
+cart.find(item =>
+item.title === products[index].title
+);
+
+if(existing){
+
+existing.qty += 1;
+
+}else{
+
+cart.push({
+
+...products[index],
+qty:1
+
+});
+
+}
+
+saveData();
+
+renderCart();
+
+showToast("تمت إضافة المنتج للسلة");
+
+}
+
+function renderCart(){
+
+let cartItems =
+document.getElementById("cartItems");
+
+cartItems.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+total +=
+parseInt(item.price) * item.qty;
+
+cartItems.innerHTML += `
+
+<div class="cart-item">
+
+<strong>
+${item.title}
+</strong>
+
+<p>
+${item.price}
+</p>
+
+<div class="qty-box">
+
+<button class="qty-btn"
+onclick="decreaseQty(${index})">
+
+-
+
+</button>
+
+<span>
+${item.qty}
+</span>
+
+<button class="qty-btn"
+onclick="increaseQty(${index})">
+
++
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total")
+.innerText =
+"الإجمالي: " + total;
+
+document.getElementById("cartCount")
+.innerText =
+cart.reduce((a,b)=>a+b.qty,0);
+
+}
+
+function increaseQty(index){
+
+cart[index].qty++;
+
+saveData();
+
+renderCart();
+
+}
+
+function decreaseQty(index){
+
+if(cart[index].qty > 1){
+
+cart[index].qty--;
+
+}else{
+
+cart.splice(index,1);
+
+}
+
+saveData();
+
+renderCart();
+
+}
+
+function openCart(){
+
+document.getElementById("cartBox")
+.classList.add("active");
+
+}
+
+function closeCart(){
+
+document.getElementById("cartBox")
+.classList.remove("active");
+
+}
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+}
+
+document.getElementById("search")
+.addEventListener("keyup",function(){
+
+let value =
+this.value.toLowerCase();
+
+let all =
+document.querySelectorAll(".product");
+
+all.forEach(product=>{
+
+product.style.display =
+product.innerText
+.toLowerCase()
+.includes(value)
+? "block"
+: "none";
+
+});
+
+});
+
+function updateFilter(){
+
+let filter =
+document.getElementById("filter");
+
+let categories = ["all"];
+
+products.forEach(p=>{
+
+if(!categories.includes(p.category)){
+
+categories.push(p.category);
+
+}
+
+});
+
+filter.innerHTML = "";
+
+categories.forEach(cat=>{
+
+filter.innerHTML += `
+
+<option value="${cat}">
+${cat}
+</option>
+
+`;
+
+});
+
+}
+
+document.getElementById("filter")
+.addEventListener("change",function(){
+
+let value = this.value;
+
+let all =
+document.querySelectorAll(".product");
+
+all.forEach((product,index)=>{
+
+if(value == "all"){
+
+product.style.display = "block";
+
+}else{
+
+product.style.display =
+products[index].category == value
+? "block"
+: "none";
+
+}
+
+});
+
+});
+
+renderProducts();
+
+renderCart();
+
+updateFilter();
+
 </script>
 
 </body>
