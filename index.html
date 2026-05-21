@@ -171,6 +171,7 @@ border-radius:15px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 transition:.3s;
+position:relative;
 }
 
 .dark .product{
@@ -206,6 +207,7 @@ margin-bottom:10px;
 .actions{
 display:flex;
 gap:10px;
+margin-top:15px;
 }
 
 .btn{
@@ -227,6 +229,18 @@ background:#111827;
 color:white;
 text-decoration:none;
 text-align:center;
+}
+
+.delete-product{
+background:#dc2626;
+color:white;
+margin-top:10px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
 }
 
 .cart-box{
@@ -485,7 +499,7 @@ id="total">
 
 <div class="toast"
 id="toast">
-تمت الإضافة
+تمت العملية
 </div>
 
 <footer>
@@ -591,9 +605,33 @@ updateFilter();
 
 showToast("تمت إضافة المنتج");
 
+document.getElementById("title").value="";
+document.getElementById("price").value="";
+document.getElementById("desc").value="";
+document.getElementById("category").value="";
+document.getElementById("image").value="";
+
 };
 
 reader.readAsDataURL(image);
+
+}
+
+function deleteProduct(index){
+
+if(confirm("هل تريد حذف المنتج؟")){
+
+products.splice(index,1);
+
+saveData();
+
+renderProducts();
+
+updateFilter();
+
+showToast("تم حذف المنتج");
+
+}
 
 }
 
@@ -652,88 +690,10 @@ href="https://wa.me/249963296885?text=أريد طلب ${product.title}">
 
 </div>
 
-</div>
+<button class="delete-product"
+onclick="deleteProduct(${index})">
 
-</div>
-
-`;
-
-});
-
-}
-
-function addToCart(index){
-
-let existing =
-cart.find(item =>
-item.title === products[index].title
-);
-
-if(existing){
-
-existing.qty += 1;
-
-}else{
-
-cart.push({
-
-...products[index],
-qty:1
-
-});
-
-}
-
-saveData();
-
-renderCart();
-
-showToast("تمت الإضافة للسلة");
-
-}
-
-function renderCart(){
-
-let cartItems =
-document.getElementById("cartItems");
-
-cartItems.innerHTML="";
-
-let total = 0;
-
-cart.forEach((item,index)=>{
-
-total += parseInt(item.price) * item.qty;
-
-cartItems.innerHTML += `
-
-<div class="cart-item">
-
-<strong>
-${item.title}
-</strong>
-
-<p>
-${item.price}
-</p>
-
-<div class="qty-box">
-
-<button class="qty-btn"
-onclick="decreaseQty(${index})">
-
--
-
-</button>
-
-<span>
-${item.qty}
-</span>
-
-<button class="qty-btn"
-onclick="increaseQty(${index})">
-
-+
+حذف المنتج
 
 </button>
 
@@ -745,150 +705,4 @@ onclick="increaseQty(${index})">
 
 });
 
-document.getElementById("total")
-.innerText =
-"الإجمالي: " + total;
-
-document.getElementById("cartCount")
-.innerText =
-cart.reduce((a,b)=>a+b.qty,0);
-
 }
-
-function increaseQty(index){
-
-cart[index].qty++;
-
-saveData();
-
-renderCart();
-
-}
-
-function decreaseQty(index){
-
-if(cart[index].qty > 1){
-
-cart[index].qty--;
-
-}
-
-saveData();
-
-renderCart();
-
-}
-
-function openCart(){
-
-document.getElementById("cartBox")
-.classList.add("active");
-
-}
-
-function closeCart(){
-
-document.getElementById("cartBox")
-.classList.remove("active");
-
-}
-
-function toggleDark(){
-
-document.body.classList.toggle("dark");
-
-}
-
-document.getElementById("search")
-.addEventListener("keyup",function(){
-
-let value =
-this.value.toLowerCase();
-
-let all =
-document.querySelectorAll(".product");
-
-all.forEach(product=>{
-
-product.style.display =
-product.innerText
-.toLowerCase()
-.includes(value)
-? "block"
-: "none";
-
-});
-
-});
-
-function updateFilter(){
-
-let filter =
-document.getElementById("filter");
-
-let categories =
-["all"];
-
-products.forEach(p=>{
-
-if(!categories.includes(p.category)){
-
-categories.push(p.category);
-
-}
-
-});
-
-filter.innerHTML="";
-
-categories.forEach(cat=>{
-
-filter.innerHTML += `
-
-<option value="${cat}">
-${cat}
-</option>
-
-`;
-
-});
-
-}
-
-document.getElementById("filter")
-.addEventListener("change",function(){
-
-let value = this.value;
-
-let all =
-document.querySelectorAll(".product");
-
-all.forEach((product,index)=>{
-
-if(value=="all"){
-
-product.style.display="block";
-
-}else{
-
-product.style.display =
-products[index].category == value
-? "block"
-: "none";
-
-}
-
-});
-
-});
-
-renderProducts();
-
-renderCart();
-
-updateFilter();
-
-</script>
-
-</body>
-</html>
