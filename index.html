@@ -359,7 +359,256 @@ width:100%;
 
 </style>
 </head>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+getStorage,
+ref,
+uploadBytes,
+getDownloadURL,
+deleteObject
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+
+const firebaseConfig = {
+
+apiKey: "ضع apiKey هنا",
+
+authDomain: "ضع authDomain هنا",
+
+projectId: "ضع projectId هنا",
+
+storageBucket: "ضع storageBucket هنا",
+
+messagingSenderId: "ضع messagingSenderId هنا",
+
+appId: "ضع appId هنا"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+let products = [];
+
+
+// إضافة منتج
+
+async function addProduct(){
+
+let title =
+document.getElementById("title").value.trim();
+
+let price =
+document.getElementById("price").value.trim();
+
+let desc =
+document.getElementById("desc").value.trim();
+
+let category =
+document.getElementById("category").value.trim();
+
+let image =
+document.getElementById("image").files[0];
+
+if(
+!title ||
+!price ||
+!desc ||
+!category ||
+!image
+){
+
+alert("املأ جميع الحقول");
+
+return;
+
+}
+
+try{
+
+const imageRef =
+ref(storage, "products/" + Date.now());
+
+await uploadBytes(imageRef, image);
+
+const imageURL =
+await getDownloadURL(imageRef);
+
+await addDoc(collection(db,"products"),{
+
+title,
+price,
+desc,
+category,
+image:imageURL,
+imagePath:imageRef.fullPath
+
+});
+
+showToast("تمت إضافة المنتج");
+
+loadProducts();
+
+}catch(error){
+
+console.log(error);
+
+alert("حدث خطأ");
+
+}
+
+}
+
+
+// تحميل المنتجات
+
+async function loadProducts(){
+
+products = [];
+
+const querySnapshot =
+await getDocs(collection(db,"products"));
+
+querySnapshot.forEach((docSnap)=>{
+
+products.push({
+
+id:docSnap.id,
+...docSnap.data()
+
+});
+
+});
+
+renderProducts();
+
+updateFilter();
+
+}
+
+
+// عرض المنتجات
+
+function renderProducts(){
+
+let box =
+document.getElementById("products");
+
+box.innerHTML = "";
+
+products.forEach((product,index)=>{
+
+box.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-content">
+
+<h3>${product.title}</h3>
+
+<div class="price">${product.price}</div>
+
+<div class="rating">★★★★★</div>
+
+<p>${product.desc}</p>
+
+<p>📦 ${product.category}</p>
+
+<div class="actions">
+
+<button class="btn cart-btn"
+onclick="addToCart(${index})">
+
+أضف للسلة
+
+</button>
+
+<a class="btn buy-btn"
+href="https://wa.me/249963296885?text=أريد طلب ${product.title}">
+
+شراء
+
+</a>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteProduct(
+'${product.id}',
+'${product.imagePath}'
+)">
+
+حذف المنتج
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+// حذف المنتج والصورة
+
+async function deleteProduct(id,imagePath){
+
+let confirmDelete =
+confirm("هل تريد حذف المنتج؟");
+
+if(!confirmDelete) return;
+
+try{
+
+await deleteDoc(doc(db,"products",id));
+
+const imageRef =
+ref(storage,imagePath);
+
+await deleteObject(imageRef);
+
+showToast("تم حذف المنتج");
+
+loadProducts();
+
+}catch(error){
+
+console.log(error);
+
+alert("حدث خطأ أثناء الحذف");
+
+}
+
+}
+
+
+window.addProduct = addProduct;
+window.deleteProduct = deleteProduct;
+
+loadProducts();
+
+</script>
 <body>
 
 <header>
