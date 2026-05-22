@@ -1,17 +1,766 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>متجر باهي</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>متجر المجاهد</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 <style>
-  body { font-family: Arial; background: #f5f5f5; margin: 0; padding: 0; }
-  .header { background: #111; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-  .header a { color: #25D366; text-decoration: none; font-weight: bold; }
-  .container { padding: 20px; }
-  .product { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  .product img { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; }
-  button { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; margin: 5px; }
-  .btn-whatsapp { background: #25D366; color: white; width: 100%; }
-  .btn-add {
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma;
+}
+
+body{
+background:#f3f4f6;
+direction:rtl;
+overflow-x:hidden;
+}
+
+header{
+background:#111827;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.hero{
+height:320px;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1200');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:20px;
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:22px;
+margin-bottom:20px;
+}
+
+.hero a{
+background:#25D366;
+padding:15px 30px;
+border-radius:10px;
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.container{
+padding:30px 20px;
+}
+
+.panel{
+background:white;
+padding:25px;
+border-radius:15px;
+margin-bottom:30px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.panel h2{
+margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border-radius:10px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+button{
+border:none;
+cursor:pointer;
+}
+
+.add-btn{
+background:#111827;
+color:white;
+padding:14px;
+width:100%;
+border-radius:10px;
+font-size:18px;
+}
+
+.products{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.product{
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+transition:.3s;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.product-content{
+padding:15px;
+}
+
+.product-content h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:24px;
+color:#16a34a;
+font-weight:bold;
+margin:10px 0;
+}
+
+.category{
+background:#111827;
+color:white;
+display:inline-block;
+padding:5px 10px;
+border-radius:8px;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.actions{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.btn{
+flex:1;
+padding:12px;
+border-radius:10px;
+font-size:16px;
+}
+
+.cart-btn{
+background:#2563eb;
+color:white;
+}
+
+.buy-btn{
+background:#25D366;
+color:white;
+text-decoration:none;
+text-align:center;
+}
+
+.delete-btn{
+background:#dc2626;
+color:white;
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-top:10px;
+font-size:16px;
+}
+
+.top-bar{
+display:flex;
+gap:15px;
+margin-bottom:25px;
+flex-wrap:wrap;
+}
+
+.top-bar input,
+.top-bar select{
+flex:1;
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#111827;
+color:white;
+padding:15px 25px;
+border-radius:10px;
+display:none;
+z-index:999999;
+}
+
+footer{
+background:#111827;
+color:white;
+padding:30px;
+text-align:center;
+margin-top:50px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:35px;
+}
+
+.top-bar{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+المجاهد
+</div>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>
+متجر المجاهد
+</h1>
+
+<p>
+أفضل المنتجات بأفضل الأسعار
+</p>
+
+<a href="https://wa.me/2499123456789">
+تواصل واتساب
+</a>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="panel">
+
+<h2>
+إضافة منتج
+</h2>
+
+<input type="text"
+id="title"
+placeholder="اسم المنتج">
+
+<input type="text"
+id="price"
+placeholder="السعر">
+
+<textarea
+id="description"
+placeholder="وصف المنتج"></textarea>
+
+<select id="category">
+
+<option value="">
+اختر القسم
+</option>
+
+<option>
+الكترونيات
+</option>
+
+<option>
+ملابس
+</option>
+
+<option>
+أحذية
+</option>
+
+<option>
+عطور
+</option>
+
+<option>
+اكسسوارات
+</option>
+
+<option>
+أخرى
+</option>
+
+</select>
+
+<input type="file"
+id="image"
+accept="image/*">
+
+<button class="add-btn"
+onclick="addProduct()">
+
+إضافة المنتج
+
+</button>
+
+</div>
+
+<div class="top-bar">
+
+<input type="text"
+id="search"
+placeholder="بحث عن منتج">
+
+<select id="filter">
+
+<option value="all">
+كل الأقسام
+</option>
+
+<option>
+الكترونيات
+</option>
+
+<option>
+ملابس
+</option>
+
+<option>
+أحذية
+</option>
+
+<option>
+عطور
+</option>
+
+<option>
+اكسسوارات
+</option>
+
+<option>
+أخرى
+</option>
+
+</select>
+
+</div>
+
+<div class="products"
+id="products">
+</div>
+
+</div>
+
+<div class="toast"
+id="toast">
+تمت العملية
+</div>
+
+<footer>
+
+<p>
+📍 مدني - حي المنيرة
+</p>
+
+<p>
+📞 2499123456789+
+</p>
+
+<p>
+© متجر المجاهد
+</p>
+
+</footer>
+
+<script>
+
+const SUPABASE_URL =
+"https://rlpvmgnraropwaktudov.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_MiVYC4IeBuHyFGj6mzo_Qg_nibc3JL1";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+function showToast(message){
+
+const toast =
+document.getElementById("toast");
+
+toast.innerText = message;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display = "none";
+
+},2000);
+
+}
+
+async function compressImage(file){
+
+return new Promise((resolve)=>{
+
+const reader =
+new FileReader();
+
+reader.readAsDataURL(file);
+
+reader.onload = function(event){
+
+const img = new Image();
+
+img.src = event.target.result;
+
+img.onload = function(){
+
+const canvas =
+document.createElement("canvas");
+
+const ctx =
+canvas.getContext("2d");
+
+const maxWidth = 600;
+
+const scale =
+maxWidth / img.width;
+
+canvas.width = maxWidth;
+
+canvas.height =
+img.height * scale;
+
+ctx.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+const compressed =
+canvas.toDataURL(
+"image/jpeg",
+0.7
+);
+
+resolve(compressed);
+
+};
+
+};
+
+});
+
+}
+
+async function uploadImage(base64){
+
+const fileName =
+Date.now() + ".jpg";
+
+const blob =
+await (await fetch(base64)).blob();
+
+const { error } =
+await supabaseClient
+.storage
+.from("store")
+.upload(fileName, blob);
+
+if(error){
+
+alert(error.message);
+
+return null;
+
+}
+
+const imageUrl =
+`https://rlpvmgnraropwaktudov.supabase.co/storage/v1/object/public/store/${fileName}`;
+
+return imageUrl;
+
+}
+
+async function addProduct(){
+
+const title =
+document.getElementById("title").value.trim();
+
+const price =
+document.getElementById("price").value.trim();
+
+const description =
+document.getElementById("description").value.trim();
+
+const category =
+document.getElementById("category").value;
+
+const image =
+document.getElementById("image").files[0];
+
+if(
+!title ||
+!price ||
+!description ||
+!category ||
+!image
+){
+
+alert("املأ جميع الحقول");
+
+return;
+
+}
+
+showToast("جاري رفع الصورة...");
+
+const compressed =
+await compressImage(image);
+
+const imageUrl =
+await uploadImage(compressed);
+
+if(!imageUrl) return;
+
+const { error } =
+await supabaseClient
+.from("products")
+.insert([{
+
+title,
+price,
+description,
+category,
+image:imageUrl
+
+}]);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+showToast("تمت إضافة المنتج");
+
+document.getElementById("title").value="";
+document.getElementById("price").value="";
+document.getElementById("description").value="";
+document.getElementById("category").value="";
+document.getElementById("image").value="";
+
+loadProducts();
+
+}
+
+async function deleteProduct(id){
+
+const confirmDelete =
+confirm("هل تريد حذف المنتج؟");
+
+if(!confirmDelete) return;
+
+const { error } =
+await supabaseClient
+.from("products")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+showToast("تم حذف المنتج");
+
+loadProducts();
+
+}
+
+async function loadProducts(){
+
+const { data,error } =
+await supabaseClient
+.from("products")
+.select("*")
+.order("id",{ascending:false});
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+const box =
+document.getElementById("products");
+
+box.innerHTML = "";
+
+data.forEach(product=>{
+
+box.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-content">
+
+<div class="category">
+${product.category}
+</div>
+
+<h3>
+${product.title}
+</h3>
+
+<div class="price">
+${product.price}
+</div>
+
+<p>
+${product.description}
+</p>
+
+<div class="actions">
+
+<button class="btn cart-btn">
+أضف للسلة
+</button>
+
+<a class="btn buy-btn"
+href="https://wa.me/2499123456789?text=أريد طلب ${product.title}">
+
+شراء
+
+</a>
+
+</div>
+
+<button class="delete-btn"
+onclick="deleteProduct(${product.id})">
+
+حذف المنتج
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("search")
+.addEventListener("keyup",function(){
+
+const value =
+this.value.toLowerCase();
+
+const products =
+document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+product.style.display =
+product.innerText
+.toLowerCase()
+.includes(value)
+? "block"
+: "none";
+
+});
+
+});
+
+document.getElementById("filter")
+.addEventListener("change",function(){
+
+const value = this.value;
+
+const products =
+document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+if(
+value == "all" ||
+product.innerText.includes(value)
+){
+
+product.style.display = "block";
+
+}else{
+
+product.style.display = "none";
+
+}
+
+});
+
+});
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
