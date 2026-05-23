@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>متجر المجاهد</title>
+<title>مستشفى المجاهد</title>
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -24,10 +22,17 @@ body{
 background:#f3f4f6;
 direction:rtl;
 overflow-x:hidden;
+color:#111827;
+transition:.3s;
+}
+
+.dark-mode{
+background:#111827;
+color:white;
 }
 
 header{
-background:#111827;
+background:#0f172a;
 color:white;
 padding:15px 20px;
 display:flex;
@@ -36,18 +41,29 @@ align-items:center;
 position:sticky;
 top:0;
 z-index:999;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
 .logo{
-font-size:28px;
+font-size:30px;
 font-weight:bold;
 }
 
+.admin-btn{
+background:#16a34a;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
 .hero{
-height:320px;
+height:450px;
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1200');
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1400');
 background-size:cover;
 background-position:center;
 display:flex;
@@ -58,191 +74,256 @@ color:white;
 padding:20px;
 }
 
-.hero h1{
-font-size:50px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:22px;
+.hero-content h1{
+font-size:60px;
 margin-bottom:20px;
 }
 
-.hero a{
-background:#25D366;
-padding:15px 30px;
-border-radius:10px;
+.hero-content p{
+font-size:24px;
+margin-bottom:30px;
+line-height:1.8;
+}
+
+.hero-btn{
+background:#16a34a;
+padding:16px 35px;
+border-radius:12px;
 color:white;
 text-decoration:none;
-font-size:18px;
+font-size:20px;
+display:inline-block;
+transition:.3s;
 }
 
 .container{
-padding:30px 20px;
+padding:50px 20px;
 }
 
-.panel{
+.cards{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-bottom:60px;
+}
+
+.card{
 background:white;
-padding:25px;
-border-radius:15px;
-margin-bottom:30px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+padding:30px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+text-align:center;
+transition:.3s;
 }
 
-.panel h2{
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card i{
+font-size:50px;
+color:#16a34a;
 margin-bottom:20px;
 }
 
-input,
-textarea,
-select{
-width:100%;
-padding:14px;
+.card h3{
 margin-bottom:15px;
-border-radius:10px;
-border:1px solid #ccc;
-font-size:16px;
+font-size:26px;
 }
 
-button{
+.section-title{
+font-size:35px;
+margin-bottom:30px;
+text-align:center;
+color:#0f172a;
+}
+
+.departments{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+margin-bottom:60px;
+}
+
+.department{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.department h3{
+margin-bottom:15px;
+color:#16a34a;
+font-size:24px;
+}
+
+.gallery{
+margin-bottom:60px;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.gallery-grid img{
+width:100%;
+height:250px;
+object-fit:cover;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.booking{
+background:white;
+padding:35px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+margin-bottom:60px;
+}
+
+.booking h2{
+margin-bottom:25px;
+text-align:center;
+font-size:32px;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:15px;
+margin-bottom:18px;
+border-radius:12px;
+border:1px solid #d1d5db;
+font-size:16px;
+outline:none;
+}
+
+.book-btn{
+background:#0f172a;
+color:white;
+padding:15px;
 border:none;
+width:100%;
+border-radius:12px;
+font-size:18px;
 cursor:pointer;
 }
 
-.add-btn{
-background:#111827;
-color:white;
-padding:14px;
-width:100%;
-border-radius:10px;
-font-size:18px;
-}
-
-.products{
+.doctors-grid{
 display:grid;
 grid-template-columns:
 repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 }
 
-.product{
+.doctor{
 background:white;
-border-radius:15px;
+border-radius:18px;
 overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-transition:.3s;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
-.product:hover{
-transform:translateY(-5px);
-}
-
-.product img{
+.doctor img{
 width:100%;
-height:250px;
+height:280px;
 object-fit:cover;
 }
 
-.product-content{
-padding:15px;
-}
-
-.product-content h3{
-margin-bottom:10px;
-}
-
-.price{
-font-size:24px;
-color:#16a34a;
-font-weight:bold;
-margin:10px 0;
-}
-
-.category{
-background:#111827;
-color:white;
-display:inline-block;
-padding:5px 10px;
-border-radius:8px;
-font-size:14px;
-margin-bottom:10px;
-}
-
-.actions{
-display:flex;
-gap:10px;
-margin-top:15px;
-}
-
-.btn{
-flex:1;
-padding:12px;
-border-radius:10px;
-font-size:16px;
-}
-
-.cart-btn{
-background:#2563eb;
-color:white;
-}
-
-.buy-btn{
-background:#25D366;
-color:white;
-text-decoration:none;
+.doctor-content{
+padding:20px;
 text-align:center;
-}
-
-.delete-btn{
-background:#dc2626;
-color:white;
-width:100%;
-padding:12px;
-border-radius:10px;
-margin-top:10px;
-font-size:16px;
-}
-
-.top-bar{
-display:flex;
-gap:15px;
-margin-bottom:25px;
-flex-wrap:wrap;
-}
-
-.top-bar input,
-.top-bar select{
-flex:1;
-}
-
-.toast{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#111827;
-color:white;
-padding:15px 25px;
-border-radius:10px;
-display:none;
-z-index:999999;
 }
 
 footer{
-background:#111827;
+background:#0f172a;
 color:white;
-padding:30px;
+padding:40px 20px;
 text-align:center;
-margin-top:50px;
+margin-top:60px;
+}
+
+.admin-panel{
+position:fixed;
+top:0;
+left:-100%;
+width:320px;
+height:100%;
+background:white;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+padding:25px;
+transition:.4s;
+z-index:999999;
+overflow:auto;
+}
+
+.admin-panel.active{
+left:0;
+}
+
+.admin-panel h2{
+margin-bottom:20px;
+}
+
+.close-admin{
+background:red;
+color:white;
+border:none;
+width:35px;
+height:35px;
+border-radius:50%;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.admin-panel button{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+background:#0f172a;
+color:white;
+}
+
+.dark-mode .card,
+.dark-mode .department,
+.dark-mode .doctor,
+.dark-mode .booking,
+.dark-mode .admin-panel{
+background:#1f2937;
+color:white;
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea{
+background:#374151;
+color:white;
+border:none;
 }
 
 @media(max-width:768px){
 
-.hero h1{
-font-size:35px;
+.hero-content h1{
+font-size:40px;
 }
 
-.top-bar{
-flex-direction:column;
+.hero-content p{
+font-size:20px;
+}
+
+.section-title{
+font-size:28px;
 }
 
 }
@@ -255,25 +336,35 @@ flex-direction:column;
 <header>
 
 <div class="logo">
-المجاهد
+🏥 مستشفى المجاهد
 </div>
+
+<button class="admin-btn"
+onclick="toggleAdminPanel()">
+
+⚙️ التحكم
+
+</button>
 
 </header>
 
 <section class="hero">
 
-<div>
+<div class="hero-content">
 
 <h1>
-متجر المجاهد
+مستشفى المجاهد
 </h1>
 
 <p>
-أفضل المنتجات بأفضل الأسعار
+رعاية صحية متكاملة بأحدث التقنيات الطبية وعلى مدار 24 ساعة
 </p>
 
-<a href="https://wa.me/2499123456789">
-تواصل واتساب
+<a class="hero-btn"
+href="https://wa.me/2499123456789">
+
+احجز عبر واتساب
+
 </a>
 
 </div>
@@ -282,118 +373,275 @@ flex-direction:column;
 
 <div class="container">
 
-<div class="panel">
+<div class="cards">
+
+<div class="card">
+
+<i class="fas fa-user-doctor"></i>
+
+<h3>
+أطباء متخصصون
+</h3>
+
+<p>
+فريق طبي محترف بخبرة عالية.
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-truck-medical"></i>
+
+<h3>
+طوارئ 24 ساعة
+</h3>
+
+<p>
+خدمة إسعاف وطوارئ طوال اليوم.
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-heart-pulse"></i>
+
+<h3>
+أجهزة حديثة
+</h3>
+
+<p>
+أحدث الأجهزة والتقنيات الطبية.
+</p>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+الأقسام الطبية
+</h2>
+
+<div class="departments">
+
+<div class="department">
+
+<h3>
+قسم الباطنية
+</h3>
+
+<p>
+تشخيص وعلاج الأمراض الباطنية.
+</p>
+
+</div>
+
+<div class="department">
+
+<h3>
+قسم الأطفال
+</h3>
+
+<p>
+رعاية صحية للأطفال وحديثي الولادة.
+</p>
+
+</div>
+
+<div class="department">
+
+<h3>
+قسم الأسنان
+</h3>
+
+<p>
+علاج وتجميل الأسنان.
+</p>
+
+</div>
+
+<div class="department">
+
+<h3>
+قسم النساء والتوليد
+</h3>
+
+<p>
+رعاية الأم والطفل.
+</p>
+
+</div>
+
+</div>
+
+<div class="gallery">
+
+<h2 class="section-title">
+صور المستشفى
+</h2>
+
+<div class="gallery-grid">
+
+<img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1200">
+
+<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200">
+
+<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200">
+
+</div>
+
+</div>
+
+<div class="booking">
 
 <h2>
-إضافة منتج
+حجز موعد
 </h2>
 
 <input type="text"
-id="title"
-placeholder="اسم المنتج">
+id="name"
+placeholder="الاسم الكامل">
 
-<input type="text"
-id="price"
-placeholder="السعر">
+<input type="tel"
+id="phone"
+placeholder="رقم الهاتف">
 
-<textarea
-id="description"
-placeholder="وصف المنتج"></textarea>
+<select id="department">
 
-<select id="category">
-
-<option value="">
+<option>
 اختر القسم
 </option>
 
 <option>
-الكترونيات
+الباطنية
 </option>
 
 <option>
-ملابس
+الأطفال
 </option>
 
 <option>
-أحذية
+الأسنان
 </option>
 
 <option>
-عطور
-</option>
-
-<option>
-اكسسوارات
-</option>
-
-<option>
-أخرى
+النساء والتوليد
 </option>
 
 </select>
 
-<input type="file"
-id="image"
-accept="image/*">
+<textarea
+id="details"
+placeholder="اكتب تفاصيل الحالة"></textarea>
 
-<button class="add-btn"
-onclick="addProduct()">
+<button class="book-btn"
+onclick="sendBooking()">
 
-إضافة المنتج
+إرسال الحجز
 
 </button>
 
 </div>
 
-<div class="top-bar">
+<h2 class="section-title">
+الأطباء
+</h2>
 
-<input type="text"
-id="search"
-placeholder="بحث عن منتج">
+<div class="doctors-grid">
 
-<select id="filter">
+<div class="doctor">
 
-<option value="all">
-كل الأقسام
-</option>
+<img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200">
 
-<option>
-الكترونيات
-</option>
+<div class="doctor-content">
 
-<option>
-ملابس
-</option>
+<h3>
+د. أحمد محمد
+</h3>
 
-<option>
-أحذية
-</option>
+<p>
+استشاري باطنية
+</p>
 
-<option>
-عطور
-</option>
-
-<option>
-اكسسوارات
-</option>
-
-<option>
-أخرى
-</option>
-
-</select>
-
-</div>
-
-<div class="products"
-id="products">
 </div>
 
 </div>
 
-<div class="toast"
-id="toast">
-تمت العملية
+<div class="doctor">
+
+<img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1200">
+
+<div class="doctor-content">
+
+<h3>
+د. سارة علي
+</h3>
+
+<p>
+أخصائية أطفال
+</p>
+
+</div>
+
+</div>
+
+<div class="doctor">
+
+<img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=1200">
+
+<div class="doctor-content">
+
+<h3>
+د. خالد حسن
+</h3>
+
+<p>
+استشاري أسنان
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="admin-panel"
+id="adminPanel">
+
+<button class="close-admin"
+onclick="toggleAdminPanel()">
+
+✕
+
+</button>
+
+<h2>
+لوحة التحكم
+</h2>
+
+<button onclick="changeHospitalName()">
+تغيير اسم المستشفى
+</button>
+
+<button onclick="changePhone()">
+تغيير رقم الهاتف
+</button>
+
+<button onclick="changeHeroText()">
+تغيير النص الرئيسي
+</button>
+
+<button onclick="toggleDarkMode()">
+الوضع الليلي
+</button>
+
+<button onclick="openWhatsapp()">
+فتح واتساب
+</button>
+
 </div>
 
 <footer>
@@ -402,363 +650,128 @@ id="toast">
 📍 مدني - حي المنيرة
 </p>
 
-<p>
+<p id="footerPhone">
 📞 2499123456789+
 </p>
 
 <p>
-© متجر المجاهد
+© مستشفى المجاهد
 </p>
 
 </footer>
 
 <script>
 
-const SUPABASE_URL =
-"https://rlpvmgnraropwaktudov.supabase.co";
+function sendBooking(){
 
-const SUPABASE_KEY =
-"sb_publishable_MiVYC4IeBuHyFGj6mzo_Qg_nibc3JL1";
+const name =
+document.getElementById("name").value;
 
-const supabaseClient =
-supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
+const phone =
+document.getElementById("phone").value;
 
-function showToast(message){
+const department =
+document.getElementById("department").value;
 
-const toast =
-document.getElementById("toast");
-
-toast.innerText = message;
-
-toast.style.display = "block";
-
-setTimeout(()=>{
-
-toast.style.display = "none";
-
-},2000);
-
-}
-
-async function compressImage(file){
-
-return new Promise((resolve)=>{
-
-const reader =
-new FileReader();
-
-reader.readAsDataURL(file);
-
-reader.onload = function(event){
-
-const img = new Image();
-
-img.src = event.target.result;
-
-img.onload = function(){
-
-const canvas =
-document.createElement("canvas");
-
-const ctx =
-canvas.getContext("2d");
-
-const maxWidth = 600;
-
-const scale =
-maxWidth / img.width;
-
-canvas.width = maxWidth;
-
-canvas.height =
-img.height * scale;
-
-ctx.drawImage(
-img,
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-const compressed =
-canvas.toDataURL(
-"image/jpeg",
-0.7
-);
-
-resolve(compressed);
-
-};
-
-};
-
-});
-
-}
-
-async function uploadImage(base64){
-
-const fileName =
-Date.now() + ".jpg";
-
-const blob =
-await (await fetch(base64)).blob();
-
-const { error } =
-await supabaseClient
-.storage
-.from("store")
-.upload(fileName, blob);
-
-if(error){
-
-alert(error.message);
-
-return null;
-
-}
-
-const imageUrl =
-`https://rlpvmgnraropwaktudov.supabase.co/storage/v1/object/public/store/${fileName}`;
-
-return imageUrl;
-
-}
-
-async function addProduct(){
-
-const title =
-document.getElementById("title").value.trim();
-
-const price =
-document.getElementById("price").value.trim();
-
-const description =
-document.getElementById("description").value.trim();
-
-const category =
-document.getElementById("category").value;
-
-const image =
-document.getElementById("image").files[0];
+const details =
+document.getElementById("details").value;
 
 if(
-!title ||
-!price ||
-!description ||
-!category ||
-!image
+!name ||
+!phone ||
+!department ||
+!details
 ){
 
 alert("املأ جميع الحقول");
-
 return;
 
 }
 
-showToast("جاري رفع الصورة...");
+alert("تم إرسال طلب الحجز بنجاح");
 
-const compressed =
-await compressImage(image);
-
-const imageUrl =
-await uploadImage(compressed);
-
-if(!imageUrl) return;
-
-const { error } =
-await supabaseClient
-.from("products")
-.insert([{
-
-title,
-price,
-description,
-category,
-image:imageUrl
-
-}]);
-
-if(error){
-
-alert(error.message);
-
-return;
+document.getElementById("name").value="";
+document.getElementById("phone").value="";
+document.getElementById("department").value="";
+document.getElementById("details").value="";
 
 }
 
-showToast("تمت إضافة المنتج");
+function toggleAdminPanel(){
 
-document.getElementById("title").value="";
-document.getElementById("price").value="";
-document.getElementById("description").value="";
-document.getElementById("category").value="";
-document.getElementById("image").value="";
-
-loadProducts();
+document
+.getElementById("adminPanel")
+.classList.toggle("active");
 
 }
 
-async function deleteProduct(id){
+function changeHospitalName(){
 
-const confirmDelete =
-confirm("هل تريد حذف المنتج؟");
+let newName =
+prompt("اكتب اسم المستشفى الجديد");
 
-if(!confirmDelete) return;
+if(newName){
 
-const { error } =
-await supabaseClient
-.from("products")
-.delete()
-.eq("id",id);
+document.querySelector(".logo")
+.innerHTML =
+"🏥 " + newName;
 
-if(error){
-
-alert(error.message);
-
-return;
+document.querySelector(".hero-content h1")
+.innerText =
+newName;
 
 }
 
-showToast("تم حذف المنتج");
+}
 
-loadProducts();
+function changePhone(){
+
+let phone =
+prompt("اكتب رقم الهاتف الجديد");
+
+if(phone){
+
+document.getElementById("footerPhone")
+.innerHTML =
+"📞 " + phone;
+
+document.querySelector(".hero-btn")
+.href =
+"https://wa.me/" + phone;
 
 }
 
-async function loadProducts(){
+}
 
-const { data,error } =
-await supabaseClient
-.from("products")
-.select("*")
-.order("id",{ascending:false});
+function changeHeroText(){
 
-if(error){
+let text =
+prompt("اكتب النص الجديد");
 
-alert(error.message);
+if(text){
 
-return;
+document.querySelector(".hero-content p")
+.innerText =
+text;
 
 }
 
-const box =
-document.getElementById("products");
+}
 
-box.innerHTML = "";
+function toggleDarkMode(){
 
-data.forEach(product=>{
-
-box.innerHTML += `
-
-<div class="product">
-
-<img src="${product.image}">
-
-<div class="product-content">
-
-<div class="category">
-${product.category}
-</div>
-
-<h3>
-${product.title}
-</h3>
-
-<div class="price">
-${product.price}
-</div>
-
-<p>
-${product.description}
-</p>
-
-<div class="actions">
-
-<button class="btn cart-btn">
-أضف للسلة
-</button>
-
-<a class="btn buy-btn"
-href="https://wa.me/2499123456789?text=أريد طلب ${product.title}">
-
-شراء
-
-</a>
-
-</div>
-
-<button class="delete-btn"
-onclick="deleteProduct(${product.id})">
-
-حذف المنتج
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
+document.body.classList.toggle("dark-mode");
 
 }
 
-document.getElementById("search")
-.addEventListener("keyup",function(){
+function openWhatsapp(){
 
-const value =
-this.value.toLowerCase();
-
-const products =
-document.querySelectorAll(".product");
-
-products.forEach(product=>{
-
-product.style.display =
-product.innerText
-.toLowerCase()
-.includes(value)
-? "block"
-: "none";
-
-});
-
-});
-
-document.getElementById("filter")
-.addEventListener("change",function(){
-
-const value = this.value;
-
-const products =
-document.querySelectorAll(".product");
-
-products.forEach(product=>{
-
-if(
-value == "all" ||
-product.innerText.includes(value)
-){
-
-product.style.display = "block";
-
-}else{
-
-product.style.display = "none";
+window.open(
+"https://wa.me/2499123456789",
+"_blank"
+);
 
 }
-
-});
-
-});
-
-loadProducts();
 
 </script>
 
