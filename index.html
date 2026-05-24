@@ -56,6 +56,18 @@ nav a:hover{
 color:#22c55e;
 }
 
+/* زر لوحة التحكم */
+
+.dashboard-btn{
+background:#22c55e;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:12px;
+font-size:18px;
+cursor:pointer;
+}
+
 /* HERO */
 
 .hero{
@@ -269,6 +281,50 @@ cursor:pointer;
 width:100%;
 }
 
+/* لوحة التحكم */
+
+.dashboard{
+position:fixed;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:#f8fafc;
+z-index:999999;
+overflow:auto;
+padding:30px;
+transition:.4s;
+}
+
+.dashboard.active{
+left:0;
+}
+
+.close-dashboard{
+background:red;
+color:white;
+border:none;
+width:45px;
+height:45px;
+border-radius:50%;
+font-size:22px;
+cursor:pointer;
+margin-bottom:20px;
+}
+
+.dashboard-box{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+max-width:700px;
+margin:auto;
+}
+
+.dashboard-box h2{
+margin-bottom:25px;
+}
+
 /* FOOTER */
 
 footer{
@@ -336,6 +392,13 @@ display:none;
 </a>
 
 </nav>
+
+<button class="dashboard-btn"
+onclick="openDashboard()">
+
+⚙️ التحكم
+
+</button>
 
 </header>
 
@@ -490,7 +553,7 @@ href="https://wa.me/2499123456789">
 الأطباء
 </h2>
 
-<div class="doctors">
+<div class="doctors" id="doctorsList">
 
 <div class="doctor">
 
@@ -504,42 +567,6 @@ href="https://wa.me/2499123456789">
 
 <p>
 استشاري باطنية
-</p>
-
-</div>
-
-</div>
-
-<div class="doctor">
-
-<img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1200">
-
-<div class="doctor-content">
-
-<h3>
-د. سارة علي
-</h3>
-
-<p>
-أخصائية أطفال
-</p>
-
-</div>
-
-</div>
-
-<div class="doctor">
-
-<img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=1200">
-
-<div class="doctor-content">
-
-<h3>
-د. خالد حسن
-</h3>
-
-<p>
-استشاري أسنان
 </p>
 
 </div>
@@ -624,6 +651,46 @@ onclick="sendBooking()">
 
 </section>
 
+<!-- لوحة التحكم -->
+
+<div class="dashboard"
+id="dashboard">
+
+<button class="close-dashboard"
+onclick="closeDashboard()">
+
+✕
+
+</button>
+
+<div class="dashboard-box">
+
+<h2>
+إضافة دكتور
+</h2>
+
+<input type="text"
+id="doctorName"
+placeholder="اسم الدكتور">
+
+<input type="text"
+id="doctorJob"
+placeholder="التخصص">
+
+<input type="file"
+id="doctorImage">
+
+<button class="book-btn"
+onclick="addDoctor()">
+
+إضافة الدكتور
+
+</button>
+
+</div>
+
+</div>
+
 <footer>
 
 <p>
@@ -645,6 +712,84 @@ onclick="sendBooking()">
 function sendBooking(){
 
 alert("تم إرسال طلب الحجز بنجاح");
+
+}
+
+/* فتح لوحة التحكم */
+
+function openDashboard(){
+
+document
+.getElementById("dashboard")
+.classList.add("active");
+
+}
+
+/* إغلاق لوحة التحكم */
+
+function closeDashboard(){
+
+document
+.getElementById("dashboard")
+.classList.remove("active");
+
+}
+
+/* إضافة دكتور */
+
+function addDoctor(){
+
+let name =
+document.getElementById("doctorName").value;
+
+let job =
+document.getElementById("doctorJob").value;
+
+let image =
+document.getElementById("doctorImage").files[0];
+
+if(!name || !job || !image){
+
+alert("املأ جميع الحقول");
+
+return;
+
+}
+
+let reader =
+new FileReader();
+
+reader.readAsDataURL(image);
+
+reader.onload = function(e){
+
+document
+.getElementById("doctorsList")
+.innerHTML += `
+
+<div class="doctor">
+
+<img src="${e.target.result}">
+
+<div class="doctor-content">
+
+<h3>
+${name}
+</h3>
+
+<p>
+${job}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+alert("تمت إضافة الدكتور");
+
+};
 
 }
 
