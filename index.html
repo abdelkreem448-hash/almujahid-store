@@ -15,7 +15,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tahomа;
+font-family:Tahoma;
 scroll-behavior:smooth;
 }
 
@@ -60,6 +60,8 @@ nav a:hover{
 color:#22c55e;
 }
 
+/* زر لوحة التحكم */
+
 .dashboard-btn{
 background:#22c55e;
 color:white;
@@ -79,6 +81,7 @@ background:#16a34a;
 
 .hero{
 height:100vh;
+
 background:
 linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
 url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1400');
@@ -90,6 +93,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
+
 padding:20px;
 }
 
@@ -631,15 +635,22 @@ onclick="addDoctor()">
 
 <script>
 
-/* الحجز */
+/* =========================
+   SUPABASE SETTINGS
+========================= */
 
-function sendBooking(){
+const SUPABASE_URL =
+"https://rlpvmgnraropwaktudov.supabase.co";
 
-alert("تم إرسال طلب الحجز بنجاح");
+const SUPABASE_KEY =
+"sb_publishable_MiVYC4IeBuHyFGj6mzo_Qg_nibc3JL1";
 
-}
+const TABLE =
+"doctors";
 
-/* لوحة التحكم */
+/* =========================
+   لوحة التحكم
+========================= */
 
 function openDashboard(){
 
@@ -657,32 +668,111 @@ document
 
 }
 
-/* تخزين الدكاترة */
+/* =========================
+   إضافة دكتور
+========================= */
 
-let doctors =
-JSON.parse(localStorage.getItem("doctors")) || [];
+async function addDoctor(){
 
-/* حفظ */
+let name =
+document.getElementById("doctorName").value;
 
-function saveDoctors(){
+let job =
+document.getElementById("doctorJob").value;
 
-localStorage.setItem(
-"doctors",
-JSON.stringify(doctors)
-);
+if(!name || !job){
+
+alert("املأ جميع الحقول");
+
+return;
 
 }
 
-/* عرض */
+try{
 
-function renderDoctors(){
+let response = await fetch(
+
+SUPABASE_URL + "/rest/v1/" + TABLE,
+
+{
+
+method:"POST",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":"return=representation"
+},
+
+body:JSON.stringify({
+
+name:name,
+job:job
+
+})
+
+}
+
+);
+
+if(response.ok){
+
+alert("تمت إضافة الدكتور بنجاح");
+
+document.getElementById("doctorName").value="";
+document.getElementById("doctorJob").value="";
+
+loadDoctors();
+
+}else{
+
+alert("فشل إضافة الدكتور");
+
+}
+
+}catch(error){
+
+alert("حدث خطأ");
+
+}
+
+}
+
+/* =========================
+   جلب الدكاترة
+========================= */
+
+async function loadDoctors(){
+
+try{
+
+let response = await fetch(
+
+SUPABASE_URL +
+"/rest/v1/" +
+TABLE +
+"?select=*",
+
+{
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + SUPABASE_KEY
+}
+
+}
+
+);
+
+let data = await response.json();
 
 let box =
 document.getElementById("doctorsList");
 
 box.innerHTML = "";
 
-doctors.forEach((doctor,index)=>{
+data.forEach((doctor)=>{
 
 box.innerHTML += `
 
@@ -699,7 +789,7 @@ ${doctor.job}
 </p>
 
 <button class="delete-btn"
-onclick="deleteDoctor(${index})">
+onclick="deleteDoctor(${doctor.id})">
 
 حذف الدكتور
 
@@ -711,63 +801,76 @@ onclick="deleteDoctor(${index})">
 
 });
 
+}catch(error){
+
+console.log(error);
+
 }
 
-/* إضافة دكتور */
+}
 
-function addDoctor(){
+/* =========================
+   حذف دكتور
+========================= */
 
-let name =
-document.getElementById("doctorName").value;
+async function deleteDoctor(id){
 
-let job =
-document.getElementById("doctorJob").value;
+let confirmDelete =
+confirm("هل تريد حذف الدكتور؟");
 
-if(!name || !job){
-
-alert("املأ جميع الحقول");
+if(!confirmDelete){
 
 return;
 
 }
 
-doctors.push({
+try{
 
-name:name,
-job:job
+await fetch(
 
-});
+SUPABASE_URL +
+"/rest/v1/" +
+TABLE +
+"?id=eq." + id,
 
-saveDoctors();
+{
 
-renderDoctors();
+method:"DELETE",
 
-document.getElementById("doctorName").value="";
-document.getElementById("doctorJob").value="";
-
-alert("تمت إضافة الدكتور");
-
-}
-
-/* حذف */
-
-function deleteDoctor(index){
-
-if(confirm("هل تريد حذف الدكتور؟")){
-
-doctors.splice(index,1);
-
-saveDoctors();
-
-renderDoctors();
-
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer " + SUPABASE_KEY
 }
 
 }
 
-/* تشغيل */
+);
 
-renderDoctors();
+loadDoctors();
+
+}catch(error){
+
+alert("فشل الحذف");
+
+}
+
+}
+
+/* =========================
+   إرسال الحجز
+========================= */
+
+function sendBooking(){
+
+alert("تم إرسال طلب الحجز بنجاح");
+
+}
+
+/* =========================
+   تشغيل
+========================= */
+
+loadDoctors();
 
 </script>
 
