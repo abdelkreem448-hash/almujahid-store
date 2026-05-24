@@ -7,7 +7,7 @@
 <title>مستشفى المجاهد</title>
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
 <style>
 
@@ -15,7 +15,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tahoma;
+font-family:Tahomа;
 scroll-behavior:smooth;
 }
 
@@ -29,13 +29,13 @@ overflow-x:hidden;
 
 header{
 background:#0f172a;
-padding:18px 30px;
+padding:18px 25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 position:fixed;
-width:100%;
 top:0;
+width:100%;
 z-index:999;
 }
 
@@ -45,10 +45,14 @@ font-size:30px;
 font-weight:bold;
 }
 
+nav{
+display:flex;
+gap:20px;
+}
+
 nav a{
 color:white;
 text-decoration:none;
-margin-right:20px;
 font-size:18px;
 }
 
@@ -56,16 +60,19 @@ nav a:hover{
 color:#22c55e;
 }
 
-/* زر لوحة التحكم */
-
 .dashboard-btn{
 background:#22c55e;
 color:white;
 border:none;
 padding:12px 20px;
 border-radius:12px;
-font-size:18px;
+font-size:17px;
 cursor:pointer;
+transition:.3s;
+}
+
+.dashboard-btn:hover{
+background:#16a34a;
 }
 
 /* HERO */
@@ -73,8 +80,8 @@ cursor:pointer;
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1400');
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1400');
 
 background-size:cover;
 background-position:center;
@@ -83,7 +90,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-
 padding:20px;
 }
 
@@ -113,7 +119,7 @@ display:inline-block;
 /* SECTION */
 
 .container{
-padding:100px 25px;
+padding:100px 20px;
 max-width:1300px;
 margin:auto;
 }
@@ -163,7 +169,7 @@ line-height:1.9;
 color:#64748b;
 }
 
-/* DEPARTMENTS */
+/* الأقسام */
 
 .departments{
 display:grid;
@@ -191,7 +197,7 @@ line-height:1.9;
 color:#64748b;
 }
 
-/* DOCTORS */
+/* الأطباء */
 
 .doctors{
 display:grid;
@@ -202,48 +208,29 @@ gap:25px;
 
 .doctor{
 background:white;
+padding:30px;
 border-radius:20px;
-overflow:hidden;
 box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.doctor img{
-width:100%;
-height:300px;
-object-fit:cover;
-}
-
-.doctor-content{
-padding:25px;
 text-align:center;
 }
 
-.doctor-content h3{
+.doctor i{
+font-size:60px;
+color:#22c55e;
+margin-bottom:20px;
+}
+
+.doctor h3{
 font-size:28px;
 margin-bottom:10px;
 }
 
-.doctor-content p{
+.doctor p{
 color:#64748b;
+margin-bottom:15px;
 }
 
-/* GALLERY */
-
-.gallery{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-}
-
-.gallery img{
-width:100%;
-height:250px;
-object-fit:cover;
-border-radius:20px;
-}
-
-/* BOOKING */
+/* الحجز */
 
 .booking{
 background:white;
@@ -270,15 +257,21 @@ font-size:16px;
 outline:none;
 }
 
-.book-btn{
+.book-btn,
+.delete-btn{
 background:#22c55e;
 color:white;
 padding:18px;
 border:none;
 border-radius:12px;
-font-size:20px;
+font-size:18px;
 cursor:pointer;
 width:100%;
+}
+
+.delete-btn{
+background:#dc2626;
+margin-top:10px;
 }
 
 /* لوحة التحكم */
@@ -340,8 +333,6 @@ margin-bottom:12px;
 font-size:18px;
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
 
 .hero-content h1{
@@ -396,7 +387,7 @@ display:none;
 <button class="dashboard-btn"
 onclick="openDashboard()">
 
-⚙️ التحكم
+⚙️ لوحة التحكم
 
 </button>
 
@@ -413,7 +404,7 @@ onclick="openDashboard()">
 </h1>
 
 <p>
-رعاية صحية متكاملة بأحدث التقنيات الطبية
+رعاية صحية متكاملة بأحدث التقنيات الطبية وعلى مدار 24 ساعة
 </p>
 
 <a class="hero-btn"
@@ -427,7 +418,7 @@ href="https://wa.me/2499123456789">
 
 </section>
 
-<!-- SERVICES -->
+<!-- الخدمات -->
 
 <section class="container" id="services">
 
@@ -446,7 +437,7 @@ href="https://wa.me/2499123456789">
 </h3>
 
 <p>
-فريق طبي محترف في جميع التخصصات.
+طاقم طبي محترف في جميع التخصصات.
 </p>
 
 </div>
@@ -474,7 +465,7 @@ href="https://wa.me/2499123456789">
 </h3>
 
 <p>
-غرف عناية مجهزة بأحدث الأجهزة.
+غرف مجهزة بأحدث التقنيات.
 </p>
 
 </div>
@@ -483,7 +474,7 @@ href="https://wa.me/2499123456789">
 
 </section>
 
-<!-- DEPARTMENTS -->
+<!-- الأقسام -->
 
 <section class="container" id="departments">
 
@@ -494,58 +485,30 @@ href="https://wa.me/2499123456789">
 <div class="departments">
 
 <div class="department">
-
-<h3>
-قسم الباطنية
-</h3>
-
-<p>
-تشخيص وعلاج الأمراض الباطنية.
-</p>
-
+<h3>الباطنية</h3>
+<p>تشخيص وعلاج الأمراض الباطنية.</p>
 </div>
 
 <div class="department">
-
-<h3>
-قسم الأطفال
-</h3>
-
-<p>
-رعاية صحية متكاملة للأطفال.
-</p>
-
+<h3>الأطفال</h3>
+<p>رعاية صحية شاملة للأطفال.</p>
 </div>
 
 <div class="department">
-
-<h3>
-قسم الأسنان
-</h3>
-
-<p>
-علاج وتجميل الأسنان.
-</p>
-
+<h3>الأسنان</h3>
+<p>علاج وتجميل الأسنان.</p>
 </div>
 
 <div class="department">
-
-<h3>
-قسم النساء والتوليد
-</h3>
-
-<p>
-متابعة الحمل والولادة.
-</p>
-
+<h3>النساء والتوليد</h3>
+<p>متابعة الحمل والولادة.</p>
 </div>
 
 </div>
 
 </section>
 
-<!-- DOCTORS -->
+<!-- الأطباء -->
 
 <section class="container" id="doctors">
 
@@ -555,49 +518,11 @@ href="https://wa.me/2499123456789">
 
 <div class="doctors" id="doctorsList">
 
-<div class="doctor">
-
-<img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200">
-
-<div class="doctor-content">
-
-<h3>
-د. أحمد محمد
-</h3>
-
-<p>
-استشاري باطنية
-</p>
-
-</div>
-
-</div>
-
 </div>
 
 </section>
 
-<!-- GALLERY -->
-
-<section class="container">
-
-<h2 class="section-title">
-صور المستشفى
-</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1200">
-
-<img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200">
-
-<img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200">
-
-</div>
-
-</section>
-
-<!-- BOOKING -->
+<!-- الحجز -->
 
 <section class="container" id="booking">
 
@@ -677,9 +602,6 @@ placeholder="اسم الدكتور">
 id="doctorJob"
 placeholder="التخصص">
 
-<input type="file"
-id="doctorImage">
-
 <button class="book-btn"
 onclick="addDoctor()">
 
@@ -709,13 +631,15 @@ onclick="addDoctor()">
 
 <script>
 
+/* الحجز */
+
 function sendBooking(){
 
 alert("تم إرسال طلب الحجز بنجاح");
 
 }
 
-/* فتح لوحة التحكم */
+/* لوحة التحكم */
 
 function openDashboard(){
 
@@ -725,13 +649,67 @@ document
 
 }
 
-/* إغلاق لوحة التحكم */
-
 function closeDashboard(){
 
 document
 .getElementById("dashboard")
 .classList.remove("active");
+
+}
+
+/* تخزين الدكاترة */
+
+let doctors =
+JSON.parse(localStorage.getItem("doctors")) || [];
+
+/* حفظ */
+
+function saveDoctors(){
+
+localStorage.setItem(
+"doctors",
+JSON.stringify(doctors)
+);
+
+}
+
+/* عرض */
+
+function renderDoctors(){
+
+let box =
+document.getElementById("doctorsList");
+
+box.innerHTML = "";
+
+doctors.forEach((doctor,index)=>{
+
+box.innerHTML += `
+
+<div class="doctor">
+
+<i class="fas fa-user-doctor"></i>
+
+<h3>
+${doctor.name}
+</h3>
+
+<p>
+${doctor.job}
+</p>
+
+<button class="delete-btn"
+onclick="deleteDoctor(${index})">
+
+حذف الدكتور
+
+</button>
+
+</div>
+
+`;
+
+});
 
 }
 
@@ -745,10 +723,7 @@ document.getElementById("doctorName").value;
 let job =
 document.getElementById("doctorJob").value;
 
-let image =
-document.getElementById("doctorImage").files[0];
-
-if(!name || !job || !image){
+if(!name || !job){
 
 alert("املأ جميع الحقول");
 
@@ -756,42 +731,43 @@ return;
 
 }
 
-let reader =
-new FileReader();
+doctors.push({
 
-reader.readAsDataURL(image);
+name:name,
+job:job
 
-reader.onload = function(e){
+});
 
-document
-.getElementById("doctorsList")
-.innerHTML += `
+saveDoctors();
 
-<div class="doctor">
+renderDoctors();
 
-<img src="${e.target.result}">
-
-<div class="doctor-content">
-
-<h3>
-${name}
-</h3>
-
-<p>
-${job}
-</p>
-
-</div>
-
-</div>
-
-`;
+document.getElementById("doctorName").value="";
+document.getElementById("doctorJob").value="";
 
 alert("تمت إضافة الدكتور");
 
-};
+}
+
+/* حذف */
+
+function deleteDoctor(index){
+
+if(confirm("هل تريد حذف الدكتور؟")){
+
+doctors.splice(index,1);
+
+saveDoctors();
+
+renderDoctors();
 
 }
+
+}
+
+/* تشغيل */
+
+renderDoctors();
 
 </script>
 
