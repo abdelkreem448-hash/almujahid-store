@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>مستشفى المجاهد العالمي</title>
+<title>مستشفى المجاهد</title>
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
@@ -15,407 +15,281 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tajawal,sans-serif;
+font-family:Tahoma;
 scroll-behavior:smooth;
 }
 
 body{
-background:#f1f5f9;
 direction:rtl;
+background:#f1f5f9;
 overflow-x:hidden;
-color:#0f172a;
 }
 
-/* =========================
-HEADER
-========================= */
+/* HEADER */
 
 header{
-position:fixed;
-top:0;
-width:100%;
-z-index:9999;
-padding:18px 40px;
+background:#0f172a;
+padding:18px 30px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(15,23,42,.92);
-backdrop-filter:blur(10px);
-box-shadow:0 5px 20px rgba(0,0,0,.1);
+position:fixed;
+width:100%;
+top:0;
+z-index:999;
 }
 
 .logo{
-font-size:34px;
-font-weight:bold;
 color:white;
+font-size:30px;
+font-weight:bold;
 }
 
-.nav{
-display:flex;
-gap:25px;
-}
-
-.nav a{
+nav a{
 color:white;
 text-decoration:none;
+margin-right:20px;
 font-size:18px;
-transition:.3s;
 }
 
-.nav a:hover{
+nav a:hover{
 color:#22c55e;
 }
 
-/* =========================
-HERO
-========================= */
+/* HERO */
 
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
 url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1400');
+
 background-size:cover;
 background-position:center;
+
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
+
 padding:20px;
 }
 
-.hero-content{
-max-width:900px;
-animation:fadeUp 1s ease;
-}
-
 .hero-content h1{
-font-size:75px;
+font-size:70px;
 color:white;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .hero-content p{
-font-size:28px;
-color:#e2e8f0;
-line-height:2;
-margin-bottom:35px;
+font-size:25px;
+color:#f1f5f9;
+margin-bottom:30px;
+line-height:1.8;
 }
 
 .hero-btn{
-background:linear-gradient(45deg,#16a34a,#22c55e);
+background:#22c55e;
+color:white;
 padding:18px 40px;
 border-radius:15px;
-color:white;
-font-size:22px;
 text-decoration:none;
+font-size:22px;
 display:inline-block;
-transition:.3s;
 }
 
-.hero-btn:hover{
-transform:translateY(-5px);
-}
-
-/* =========================
-SECTIONS
-========================= */
+/* SECTION */
 
 .container{
 padding:100px 25px;
-max-width:1400px;
+max-width:1300px;
 margin:auto;
 }
 
 .section-title{
 text-align:center;
-font-size:48px;
-margin-bottom:60px;
-position:relative;
+font-size:45px;
+margin-bottom:50px;
+color:#0f172a;
 }
 
-.section-title::after{
-content:'';
-width:120px;
-height:5px;
-background:#22c55e;
-display:block;
-margin:15px auto;
-border-radius:50px;
-}
-
-/* =========================
-SERVICES
-========================= */
+/* SERVICES */
 
 .cards{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
 .card{
 background:white;
-padding:40px 30px;
-border-radius:30px;
+padding:35px;
+border-radius:20px;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.4s;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-8px);
 }
 
 .card i{
-font-size:65px;
+font-size:55px;
 color:#22c55e;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .card h3{
-font-size:30px;
-margin-bottom:18px;
+font-size:28px;
+margin-bottom:15px;
 }
 
 .card p{
-font-size:18px;
-line-height:2;
+line-height:1.9;
 color:#64748b;
 }
 
-/* =========================
-DEPARTMENTS
-========================= */
+/* DEPARTMENTS */
 
 .departments{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-margin-top:30px;
+repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
 .department{
 background:white;
-padding:35px;
-border-radius:25px;
-border-top:6px solid #22c55e;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-transition:.4s;
-}
-
-.department:hover{
-transform:translateY(-8px);
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+border-top:5px solid #22c55e;
 }
 
 .department h3{
-font-size:30px;
-margin-bottom:18px;
+margin-bottom:15px;
+font-size:28px;
 color:#16a34a;
 }
 
 .department p{
-line-height:2;
-font-size:18px;
-color:#475569;
+line-height:1.9;
+color:#64748b;
 }
 
-/* =========================
-DOCTORS
-========================= */
+/* DOCTORS */
 
-.doctors-grid{
+.doctors{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(300px,1fr));
-gap:35px;
+repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
 .doctor{
 background:white;
-border-radius:30px;
+border-radius:20px;
 overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-transition:.4s;
-}
-
-.doctor:hover{
-transform:translateY(-8px);
+box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .doctor img{
 width:100%;
-height:340px;
+height:300px;
 object-fit:cover;
 }
 
 .doctor-content{
-padding:30px;
+padding:25px;
 text-align:center;
 }
 
 .doctor-content h3{
-font-size:30px;
-margin-bottom:12px;
-}
-
-.doctor-content p{
-font-size:19px;
-color:#64748b;
+font-size:28px;
 margin-bottom:10px;
 }
 
-/* =========================
-GALLERY
-========================= */
+.doctor-content p{
+color:#64748b;
+}
+
+/* GALLERY */
 
 .gallery{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
+repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
 .gallery img{
 width:100%;
-height:280px;
+height:250px;
 object-fit:cover;
-border-radius:25px;
-transition:.4s;
-box-shadow:0 8px 20px rgba(0,0,0,.08);
+border-radius:20px;
 }
 
-.gallery img:hover{
-transform:scale(1.03);
-}
-
-/* =========================
-BOOKING
-========================= */
+/* BOOKING */
 
 .booking{
 background:white;
-padding:50px;
-border-radius:30px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-margin-top:40px;
+padding:40px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .booking h2{
 text-align:center;
-font-size:42px;
-margin-bottom:35px;
+font-size:40px;
+margin-bottom:30px;
 }
 
 input,
 textarea,
 select{
 width:100%;
-padding:18px;
-margin-bottom:20px;
-border-radius:15px;
+padding:16px;
+margin-bottom:18px;
+border-radius:12px;
 border:1px solid #cbd5e1;
-font-size:17px;
+font-size:16px;
 outline:none;
-transition:.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-border-color:#22c55e;
-box-shadow:0 0 0 4px rgba(34,197,94,.15);
 }
 
 .book-btn{
-width:100%;
+background:#22c55e;
+color:white;
 padding:18px;
-background:linear-gradient(45deg,#16a34a,#22c55e);
 border:none;
-border-radius:15px;
+border-radius:12px;
 font-size:20px;
-color:white;
 cursor:pointer;
-transition:.3s;
+width:100%;
 }
 
-.book-btn:hover{
-transform:translateY(-4px);
-}
-
-/* =========================
-DASHBOARD BUTTON
-========================= */
-
-.control-btn{
-position:fixed;
-bottom:25px;
-left:25px;
-width:70px;
-height:70px;
-border:none;
-border-radius:50%;
-background:linear-gradient(45deg,#16a34a,#22c55e);
-color:white;
-font-size:28px;
-cursor:pointer;
-z-index:999999;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-/* =========================
-FOOTER
-========================= */
+/* FOOTER */
 
 footer{
 background:#0f172a;
 color:white;
-padding:60px 20px;
+padding:50px 20px;
 text-align:center;
-margin-top:80px;
+margin-top:60px;
 }
 
 footer p{
-font-size:20px;
-margin-bottom:15px;
+margin-bottom:12px;
+font-size:18px;
 }
 
-/* =========================
-ANIMATION
-========================= */
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-/* =========================
-MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:768px){
 
-header{
-padding:15px 20px;
-}
-
-.nav{
-display:none;
-}
-
 .hero-content h1{
-font-size:45px;
+font-size:42px;
 }
 
 .hero-content p{
@@ -426,8 +300,8 @@ font-size:20px;
 font-size:35px;
 }
 
-.booking{
-padding:30px 20px;
+nav{
+display:none;
 }
 
 }
@@ -443,7 +317,7 @@ padding:30px 20px;
 🏥 مستشفى المجاهد
 </div>
 
-<div class="nav">
+<nav>
 
 <a href="#services">
 الخدمات
@@ -461,7 +335,7 @@ padding:30px 20px;
 الحجز
 </a>
 
-</div>
+</nav>
 
 </header>
 
@@ -472,11 +346,11 @@ padding:30px 20px;
 <div class="hero-content">
 
 <h1>
-مستشفى المجاهد العالمي
+مستشفى المجاهد
 </h1>
 
 <p>
-رعاية صحية عالمية بأحدث التقنيات الطبية وعلى مدار 24 ساعة
+رعاية صحية متكاملة بأحدث التقنيات الطبية
 </p>
 
 <a class="hero-btn"
@@ -492,8 +366,7 @@ href="https://wa.me/2499123456789">
 
 <!-- SERVICES -->
 
-<section class="container"
-id="services">
+<section class="container" id="services">
 
 <h2 class="section-title">
 الخدمات الطبية
@@ -510,7 +383,7 @@ id="services">
 </h3>
 
 <p>
-أفضل الكفاءات الطبية في جميع التخصصات.
+فريق طبي محترف في جميع التخصصات.
 </p>
 
 </div>
@@ -524,7 +397,7 @@ id="services">
 </h3>
 
 <p>
-استقبال الحالات الحرجة طوال اليوم.
+خدمة إسعاف وطوارئ طوال اليوم.
 </p>
 
 </div>
@@ -534,25 +407,11 @@ id="services">
 <i class="fas fa-heart-pulse"></i>
 
 <h3>
-العناية المكثفة
+العناية المركزة
 </h3>
 
 <p>
-أحدث وحدات العناية المركزة بأعلى المعايير.
-</p>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-x-ray"></i>
-
-<h3>
-الأشعة والتحاليل
-</h3>
-
-<p>
-مختبرات وأجهزة دقيقة وحديثة.
+غرف عناية مجهزة بأحدث الأجهزة.
 </p>
 
 </div>
@@ -563,8 +422,7 @@ id="services">
 
 <!-- DEPARTMENTS -->
 
-<section class="container"
-id="departments">
+<section class="container" id="departments">
 
 <h2 class="section-title">
 الأقسام الطبية
@@ -579,7 +437,7 @@ id="departments">
 </h3>
 
 <p>
-تشخيص وعلاج الأمراض المزمنة والحادة.
+تشخيص وعلاج الأمراض الباطنية.
 </p>
 
 </div>
@@ -591,7 +449,7 @@ id="departments">
 </h3>
 
 <p>
-رعاية صحية متكاملة للأطفال وحديثي الولادة.
+رعاية صحية متكاملة للأطفال.
 </p>
 
 </div>
@@ -603,7 +461,7 @@ id="departments">
 </h3>
 
 <p>
-علاج وتجميل الأسنان بأحدث التقنيات.
+علاج وتجميل الأسنان.
 </p>
 
 </div>
@@ -615,7 +473,7 @@ id="departments">
 </h3>
 
 <p>
-متابعة الحمل والولادة ورعاية الأم.
+متابعة الحمل والولادة.
 </p>
 
 </div>
@@ -626,14 +484,13 @@ id="departments">
 
 <!-- DOCTORS -->
 
-<section class="container"
-id="doctors">
+<section class="container" id="doctors">
 
 <h2 class="section-title">
 الأطباء
 </h2>
 
-<div class="doctors-grid">
+<div class="doctors">
 
 <div class="doctor">
 
@@ -647,10 +504,6 @@ id="doctors">
 
 <p>
 استشاري باطنية
-</p>
-
-<p>
-قسم الباطنية
 </p>
 
 </div>
@@ -671,10 +524,6 @@ id="doctors">
 أخصائية أطفال
 </p>
 
-<p>
-قسم الأطفال
-</p>
-
 </div>
 
 </div>
@@ -691,10 +540,6 @@ id="doctors">
 
 <p>
 استشاري أسنان
-</p>
-
-<p>
-قسم الأسنان
 </p>
 
 </div>
@@ -727,8 +572,7 @@ id="doctors">
 
 <!-- BOOKING -->
 
-<section class="container"
-id="booking">
+<section class="container" id="booking">
 
 <div class="booking">
 
@@ -770,7 +614,7 @@ placeholder="رقم الهاتف">
 placeholder="تفاصيل الحالة"></textarea>
 
 <button class="book-btn"
-onclick="alert('تم إرسال طلب الحجز بنجاح')">
+onclick="sendBooking()">
 
 إرسال الحجز
 
@@ -779,16 +623,6 @@ onclick="alert('تم إرسال طلب الحجز بنجاح')">
 </div>
 
 </section>
-
-<!-- زر التحكم -->
-
-<button class="control-btn">
-
-⚙️
-
-</button>
-
-<!-- FOOTER -->
 
 <footer>
 
@@ -801,10 +635,20 @@ onclick="alert('تم إرسال طلب الحجز بنجاح')">
 </p>
 
 <p>
-© مستشفى المجاهد العالمي
+© مستشفى المجاهد
 </p>
 
 </footer>
+
+<script>
+
+function sendBooking(){
+
+alert("تم إرسال طلب الحجز بنجاح");
+
+}
+
+</script>
 
 </body>
 </html>
