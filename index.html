@@ -15,14 +15,15 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tahoma;
+font-family:Tajawal,sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
-direction:rtl;
 background:#f1f5f9;
+direction:rtl;
 overflow-x:hidden;
+color:#0f172a;
 }
 
 /* HEADER */
@@ -45,36 +46,14 @@ font-size:30px;
 font-weight:bold;
 }
 
-nav{
-display:flex;
-gap:20px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-size:18px;
-}
-
-nav a:hover{
-color:#22c55e;
-}
-
-/* زر لوحة التحكم */
-
 .dashboard-btn{
-background:#22c55e;
+background:#16a34a;
 color:white;
 border:none;
 padding:12px 20px;
 border-radius:12px;
-font-size:17px;
+font-size:16px;
 cursor:pointer;
-transition:.3s;
-}
-
-.dashboard-btn:hover{
-background:#16a34a;
 }
 
 /* HERO */
@@ -93,7 +72,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
-
 padding:20px;
 }
 
@@ -104,149 +82,101 @@ margin-bottom:20px;
 }
 
 .hero-content p{
-font-size:25px;
-color:#f1f5f9;
+font-size:24px;
+color:#f8fafc;
 margin-bottom:30px;
 line-height:1.8;
 }
 
 .hero-btn{
-background:#22c55e;
-color:white;
-padding:18px 40px;
+background:#16a34a;
+padding:18px 35px;
 border-radius:15px;
+color:white;
 text-decoration:none;
 font-size:22px;
 display:inline-block;
 }
 
-/* SECTION */
+/* CONTAINER */
 
 .container{
-padding:100px 20px;
 max-width:1300px;
 margin:auto;
+padding:100px 20px;
 }
 
 .section-title{
 text-align:center;
 font-size:45px;
 margin-bottom:50px;
-color:#0f172a;
 }
 
-/* SERVICES */
+/* CARDS */
 
-.cards{
+.cards,
+.departments,
+.doctors-grid{
 display:grid;
 grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
+repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 }
 
-.card{
-background:white;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-}
-
-.card i{
-font-size:55px;
-color:#22c55e;
-margin-bottom:20px;
-}
-
-.card h3{
-font-size:28px;
-margin-bottom:15px;
-}
-
-.card p{
-line-height:1.9;
-color:#64748b;
-}
-
-/* الأقسام */
-
-.departments{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.department{
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-border-top:5px solid #22c55e;
-}
-
-.department h3{
-margin-bottom:15px;
-font-size:28px;
-color:#16a34a;
-}
-
-.department p{
-line-height:1.9;
-color:#64748b;
-}
-
-/* الأطباء */
-
-.doctors{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
+.card,
+.department,
 .doctor{
 background:white;
 padding:30px;
 border-radius:20px;
 box-shadow:0 5px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover,
+.department:hover,
+.doctor:hover{
+transform:translateY(-5px);
+}
+
+.card{
 text-align:center;
 }
 
-.doctor i{
-font-size:60px;
-color:#22c55e;
+.card i{
+font-size:55px;
+color:#16a34a;
 margin-bottom:20px;
 }
 
+.card h3,
+.department h3,
 .doctor h3{
-font-size:28px;
-margin-bottom:10px;
-}
-
-.doctor p{
-color:#64748b;
 margin-bottom:15px;
+font-size:28px;
 }
 
-/* الحجز */
+.card p,
+.department p,
+.doctor p{
+line-height:1.9;
+color:#64748b;
+}
+
+/* BOOKING */
 
 .booking{
 background:white;
 padding:40px;
 border-radius:25px;
+margin-top:60px;
 box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .booking h2{
 text-align:center;
-font-size:40px;
 margin-bottom:30px;
+font-size:40px;
 }
 
 input,
@@ -262,23 +192,36 @@ outline:none;
 }
 
 .book-btn,
-.delete-btn{
-background:#22c55e;
-color:white;
-padding:18px;
+.add-btn,
+.delete-btn,
+.login-btn{
+width:100%;
+padding:16px;
 border:none;
 border-radius:12px;
 font-size:18px;
 cursor:pointer;
-width:100%;
+color:white;
+}
+
+.book-btn{
+background:#16a34a;
+}
+
+.add-btn{
+background:#2563eb;
 }
 
 .delete-btn{
 background:#dc2626;
-margin-top:10px;
+margin-top:15px;
 }
 
-/* لوحة التحكم */
+.login-btn{
+background:#0f172a;
+}
+
+/* DASHBOARD */
 
 .dashboard{
 position:fixed;
@@ -289,37 +232,33 @@ height:100%;
 background:#f8fafc;
 z-index:999999;
 overflow:auto;
-padding:30px;
 transition:.4s;
+padding:30px;
 }
 
 .dashboard.active{
 left:0;
 }
 
-.close-dashboard{
+.dashboard-box{
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:25px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.close-btn{
 background:red;
 color:white;
 border:none;
 width:45px;
 height:45px;
 border-radius:50%;
-font-size:22px;
+font-size:20px;
 cursor:pointer;
 margin-bottom:20px;
-}
-
-.dashboard-box{
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-max-width:700px;
-margin:auto;
-}
-
-.dashboard-box h2{
-margin-bottom:25px;
 }
 
 /* FOOTER */
@@ -329,13 +268,15 @@ background:#0f172a;
 color:white;
 padding:50px 20px;
 text-align:center;
-margin-top:60px;
+margin-top:70px;
 }
 
 footer p{
-margin-bottom:12px;
+margin-bottom:10px;
 font-size:18px;
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -348,11 +289,7 @@ font-size:20px;
 }
 
 .section-title{
-font-size:35px;
-}
-
-nav{
-display:none;
+font-size:34px;
 }
 
 }
@@ -368,28 +305,8 @@ display:none;
 🏥 مستشفى المجاهد
 </div>
 
-<nav>
-
-<a href="#services">
-الخدمات
-</a>
-
-<a href="#departments">
-الأقسام
-</a>
-
-<a href="#doctors">
-الأطباء
-</a>
-
-<a href="#booking">
-الحجز
-</a>
-
-</nav>
-
 <button class="dashboard-btn"
-onclick="openDashboard()">
+onclick="showLogin()">
 
 ⚙️ لوحة التحكم
 
@@ -424,7 +341,7 @@ href="https://wa.me/2499123456789">
 
 <!-- الخدمات -->
 
-<section class="container" id="services">
+<section class="container">
 
 <h2 class="section-title">
 الخدمات الطبية
@@ -441,21 +358,7 @@ href="https://wa.me/2499123456789">
 </h3>
 
 <p>
-طاقم طبي محترف في جميع التخصصات.
-</p>
-
-</div>
-
-<div class="card">
-
-<i class="fas fa-truck-medical"></i>
-
-<h3>
-طوارئ 24 ساعة
-</h3>
-
-<p>
-خدمة إسعاف وطوارئ طوال اليوم.
+طاقم طبي محترف في جميع التخصصات الطبية.
 </p>
 
 </div>
@@ -469,7 +372,21 @@ href="https://wa.me/2499123456789">
 </h3>
 
 <p>
-غرف مجهزة بأحدث التقنيات.
+غرف عناية مجهزة بأحدث الأجهزة الطبية.
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-truck-medical"></i>
+
+<h3>
+طوارئ 24 ساعة
+</h3>
+
+<p>
+خدمة إسعاف وطوارئ على مدار الساعة.
 </p>
 
 </div>
@@ -480,7 +397,7 @@ href="https://wa.me/2499123456789">
 
 <!-- الأقسام -->
 
-<section class="container" id="departments">
+<section class="container">
 
 <h2 class="section-title">
 الأقسام الطبية
@@ -495,7 +412,7 @@ href="https://wa.me/2499123456789">
 
 <div class="department">
 <h3>الأطفال</h3>
-<p>رعاية صحية شاملة للأطفال.</p>
+<p>رعاية صحية متكاملة للأطفال.</p>
 </div>
 
 <div class="department">
@@ -514,13 +431,14 @@ href="https://wa.me/2499123456789">
 
 <!-- الأطباء -->
 
-<section class="container" id="doctors">
+<section class="container">
 
 <h2 class="section-title">
 الأطباء
 </h2>
 
-<div class="doctors" id="doctorsList">
+<div class="doctors-grid"
+id="doctorsList">
 
 </div>
 
@@ -528,7 +446,7 @@ href="https://wa.me/2499123456789">
 
 <!-- الحجز -->
 
-<section class="container" id="booking">
+<section class="container">
 
 <div class="booking">
 
@@ -580,21 +498,54 @@ onclick="sendBooking()">
 
 </section>
 
-<!-- لوحة التحكم -->
+<!-- LOGIN -->
+
+<div class="dashboard"
+id="loginBox">
+
+<div class="dashboard-box">
+
+<button class="close-btn"
+onclick="closeLogin()">
+
+✕
+
+</button>
+
+<h2 style="margin-bottom:20px;">
+تسجيل دخول الإدارة
+</h2>
+
+<input type="password"
+id="adminPassword"
+placeholder="ادخل كلمة المرور">
+
+<button class="login-btn"
+onclick="loginAdmin()">
+
+دخول
+
+</button>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
 
 <div class="dashboard"
 id="dashboard">
 
-<button class="close-dashboard"
+<div class="dashboard-box">
+
+<button class="close-btn"
 onclick="closeDashboard()">
 
 ✕
 
 </button>
 
-<div class="dashboard-box">
-
-<h2>
+<h2 style="margin-bottom:20px;">
 إضافة دكتور
 </h2>
 
@@ -606,7 +557,7 @@ placeholder="اسم الدكتور">
 id="doctorJob"
 placeholder="التخصص">
 
-<button class="book-btn"
+<button class="add-btn"
 onclick="addDoctor()">
 
 إضافة الدكتور
@@ -636,7 +587,14 @@ onclick="addDoctor()">
 <script>
 
 /* =========================
-   SUPABASE SETTINGS
+   كلمة مرور لوحة التحكم
+========================= */
+
+const ADMIN_PASSWORD =
+"123456";
+
+/* =========================
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
@@ -649,7 +607,47 @@ const TABLE =
 "doctors";
 
 /* =========================
-   لوحة التحكم
+   LOGIN
+========================= */
+
+function showLogin(){
+
+document
+.getElementById("loginBox")
+.classList.add("active");
+
+}
+
+function closeLogin(){
+
+document
+.getElementById("loginBox")
+.classList.remove("active");
+
+}
+
+function loginAdmin(){
+
+let password =
+document.getElementById("adminPassword")
+.value;
+
+if(password === ADMIN_PASSWORD){
+
+closeLogin();
+
+openDashboard();
+
+}else{
+
+alert("كلمة المرور غير صحيحة");
+
+}
+
+}
+
+/* =========================
+   DASHBOARD
 ========================= */
 
 function openDashboard(){
@@ -674,11 +672,13 @@ document
 
 async function addDoctor(){
 
-let name =
-document.getElementById("doctorName").value;
+const name =
+document.getElementById("doctorName")
+.value.trim();
 
-let job =
-document.getElementById("doctorJob").value;
+const job =
+document.getElementById("doctorJob")
+.value.trim();
 
 if(!name || !job){
 
@@ -690,9 +690,12 @@ return;
 
 try{
 
-let response = await fetch(
+const response =
+await fetch(
 
-SUPABASE_URL + "/rest/v1/" + TABLE,
+SUPABASE_URL +
+"/rest/v1/" +
+TABLE,
 
 {
 
@@ -705,12 +708,12 @@ headers:{
 "Prefer":"return=representation"
 },
 
-body:JSON.stringify({
-
+body:JSON.stringify([
+{
 name:name,
 job:job
-
-})
+}
+])
 
 }
 
@@ -718,7 +721,7 @@ job:job
 
 if(response.ok){
 
-alert("تمت إضافة الدكتور بنجاح");
+alert("تمت إضافة الدكتور");
 
 document.getElementById("doctorName").value="";
 document.getElementById("doctorJob").value="";
@@ -727,7 +730,7 @@ loadDoctors();
 
 }else{
 
-alert("فشل إضافة الدكتور");
+alert("فشل الإضافة");
 
 }
 
@@ -747,7 +750,8 @@ async function loadDoctors(){
 
 try{
 
-let response = await fetch(
+const response =
+await fetch(
 
 SUPABASE_URL +
 "/rest/v1/" +
@@ -765,9 +769,10 @@ headers:{
 
 );
 
-let data = await response.json();
+const data =
+await response.json();
 
-let box =
+const box =
 document.getElementById("doctorsList");
 
 box.innerHTML = "";
@@ -815,7 +820,7 @@ console.log(error);
 
 async function deleteDoctor(id){
 
-let confirmDelete =
+const confirmDelete =
 confirm("هل تريد حذف الدكتور؟");
 
 if(!confirmDelete){
@@ -857,7 +862,7 @@ alert("فشل الحذف");
 }
 
 /* =========================
-   إرسال الحجز
+   الحجز
 ========================= */
 
 function sendBooking(){
