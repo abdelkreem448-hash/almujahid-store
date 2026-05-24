@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,7 +16,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Tajawal,sans-serif;
+font-family:Tahoma;
 scroll-behavior:smooth;
 }
 
@@ -30,7 +31,7 @@ color:#0f172a;
 
 header{
 background:#0f172a;
-padding:18px 25px;
+padding:15px 25px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -41,9 +42,9 @@ z-index:999;
 }
 
 .logo{
-color:white;
 font-size:30px;
 font-weight:bold;
+color:white;
 }
 
 .dashboard-btn{
@@ -52,17 +53,16 @@ color:white;
 border:none;
 padding:12px 20px;
 border-radius:12px;
-font-size:16px;
 cursor:pointer;
+font-size:16px;
 }
 
 /* HERO */
 
 .hero{
 height:100vh;
-
 background:
-linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
 url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1400');
 
 background-size:cover;
@@ -295,6 +295,7 @@ font-size:34px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -429,7 +430,7 @@ href="https://wa.me/2499123456789">
 
 </section>
 
-<!-- الأطباء -->
+<!-- الدكاترة -->
 
 <section class="container">
 
@@ -587,13 +588,6 @@ onclick="addDoctor()">
 <script>
 
 /* =========================
-   كلمة مرور لوحة التحكم
-========================= */
-
-const ADMIN_PASSWORD =
-"123456";
-
-/* =========================
    SUPABASE
 ========================= */
 
@@ -605,6 +599,13 @@ const SUPABASE_KEY =
 
 const TABLE =
 "doctors";
+
+/* =========================
+   PASSWORD
+========================= */
+
+const ADMIN_PASSWORD =
+"123456";
 
 /* =========================
    LOGIN
@@ -667,7 +668,7 @@ document
 }
 
 /* =========================
-   إضافة دكتور
+   ADD DOCTOR
 ========================= */
 
 async function addDoctor(){
@@ -702,18 +703,26 @@ TABLE,
 method:"POST",
 
 headers:{
+
 "apikey":SUPABASE_KEY,
-"Authorization":"Bearer " + SUPABASE_KEY,
-"Content-Type":"application/json",
-"Prefer":"return=representation"
+
+"Authorization":
+"Bearer " + SUPABASE_KEY,
+
+"Content-Type":
+"application/json",
+
+"Prefer":
+"return=representation"
+
 },
 
-body:JSON.stringify([
-{
+body:JSON.stringify({
+
 name:name,
 job:job
-}
-])
+
+})
 
 }
 
@@ -730,11 +739,18 @@ loadDoctors();
 
 }else{
 
-alert("فشل الإضافة");
+const errorText =
+await response.text();
+
+console.log(errorText);
+
+alert("فشل إضافة الدكتور");
 
 }
 
 }catch(error){
+
+console.log(error);
 
 alert("حدث خطأ");
 
@@ -743,7 +759,7 @@ alert("حدث خطأ");
 }
 
 /* =========================
-   جلب الدكاترة
+   LOAD DOCTORS
 ========================= */
 
 async function loadDoctors(){
@@ -761,8 +777,12 @@ TABLE +
 {
 
 headers:{
+
 "apikey":SUPABASE_KEY,
-"Authorization":"Bearer " + SUPABASE_KEY
+
+"Authorization":
+"Bearer " + SUPABASE_KEY
+
 }
 
 }
@@ -783,10 +803,8 @@ box.innerHTML += `
 
 <div class="doctor">
 
-<i class="fas fa-user-doctor"></i>
-
 <h3>
-${doctor.name}
+👨‍⚕️ ${doctor.name}
 </h3>
 
 <p>
@@ -815,7 +833,7 @@ console.log(error);
 }
 
 /* =========================
-   حذف دكتور
+   DELETE DOCTOR
 ========================= */
 
 async function deleteDoctor(id){
@@ -843,8 +861,12 @@ TABLE +
 method:"DELETE",
 
 headers:{
+
 "apikey":SUPABASE_KEY,
-"Authorization":"Bearer " + SUPABASE_KEY
+
+"Authorization":
+"Bearer " + SUPABASE_KEY
+
 }
 
 }
@@ -862,7 +884,7 @@ alert("فشل الحذف");
 }
 
 /* =========================
-   الحجز
+   BOOKING
 ========================= */
 
 function sendBooking(){
@@ -872,7 +894,7 @@ alert("تم إرسال طلب الحجز بنجاح");
 }
 
 /* =========================
-   تشغيل
+   START
 ========================= */
 
 loadDoctors();
