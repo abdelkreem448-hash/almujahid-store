@@ -1,28 +1,131 @@
-<!-- ضع هذا الجزء بدل قسم الأطباء القديم بالكامل -->
+<!-- زر لوحة التحكم -->
 
-<h2 class="section-title">
-الأطباء
-</h2>
+<button class="control-btn"
+onclick="openDashboard()">
 
-<div class="doctors-grid"
-id="doctorsGrid">
-</div>
+⚙️ لوحة التحكم
 
-<!-- لوحة التحكم -->
-
-<div class="admin-panel"
-id="adminPanel">
-
-<button class="close-admin"
-onclick="toggleAdminPanel()">
-✕
 </button>
 
-<h2 style="margin-bottom:20px;">
+<!-- لوحة التحكم الكبيرة -->
+
+<div class="dashboard"
+id="dashboard">
+
+<div class="dashboard-header">
+
+<h2>
 لوحة التحكم
 </h2>
 
+<button class="close-dashboard"
+onclick="closeDashboard()">
+
+✕
+
+</button>
+
+</div>
+
+<!-- تعديل اسم المستشفى -->
+
+<div class="dashboard-box">
+
+<h3>
+تعديل اسم المستشفى
+</h3>
+
+<input type="text"
+id="hospitalNameInput"
+placeholder="اسم المستشفى الجديد">
+
+<button class="add-btn"
+onclick="updateHospitalName()">
+
+حفظ الاسم
+
+</button>
+
+</div>
+
+<!-- تعديل الرقم -->
+
+<div class="dashboard-box">
+
+<h3>
+تعديل رقم الهاتف
+</h3>
+
+<input type="text"
+id="phoneInput"
+placeholder="رقم الهاتف">
+
+<button class="add-btn"
+onclick="updatePhone()">
+
+حفظ الرقم
+
+</button>
+
+</div>
+
+<!-- إضافة قسم -->
+
+<div class="dashboard-box">
+
+<h3>
+إضافة قسم طبي
+</h3>
+
+<input type="text"
+id="deptTitle"
+placeholder="اسم القسم">
+
+<textarea
+id="deptDesc"
+placeholder="وصف القسم"></textarea>
+
+<button class="add-btn"
+onclick="addDepartment()">
+
+إضافة القسم
+
+</button>
+
+</div>
+
+<!-- إضافة خدمة -->
+
+<div class="dashboard-box">
+
+<h3>
+إضافة خدمة
+</h3>
+
+<input type="text"
+id="serviceTitle"
+placeholder="اسم الخدمة">
+
+<textarea
+id="serviceDesc"
+placeholder="وصف الخدمة"></textarea>
+
+<button class="add-btn"
+onclick="addService()">
+
+إضافة الخدمة
+
+</button>
+
+</div>
+
 <!-- إضافة دكتور -->
+
+<div class="dashboard-box">
+
+<h3>
+إضافة دكتور
+</h3>
 
 <input type="text"
 id="doctorName"
@@ -33,375 +136,167 @@ id="doctorJob"
 placeholder="التخصص">
 
 <input type="file"
-id="doctorImage"
-accept="image/*">
+id="doctorImage">
 
 <button class="add-btn"
 onclick="addDoctor()">
 
-إضافة دكتور
+إضافة الدكتور
 
 </button>
 
-<hr style="margin:25px 0;">
+</div>
 
-<!-- إضافة صور للمستشفى -->
+<!-- إضافة صور -->
+
+<div class="dashboard-box">
+
+<h3>
+إضافة صور للمستشفى
+</h3>
 
 <input type="file"
 id="hospitalImages"
-accept="image/*"
 multiple>
 
 <button class="add-btn"
 onclick="addHospitalImages()">
 
-إضافة صور للمستشفى
-
-</button>
-
-<hr style="margin:25px 0;">
-
-<button class="book-btn"
-onclick="changeHospitalName()">
-
-تغيير اسم المستشفى
-
-</button>
-
-<button class="book-btn"
-onclick="changePhone()">
-
-تغيير رقم الهاتف
-
-</button>
-
-<button class="book-btn"
-onclick="changeHeroText()">
-
-تغيير النص الرئيسي
-
-</button>
-
-<button class="book-btn"
-onclick="toggleDarkMode()">
-
-الوضع الليلي
+رفع الصور
 
 </button>
 
 </div>
 
-<!-- معرض الصور -->
-
-<h2 class="section-title">
-صور المستشفى
-</h2>
-
-<div class="gallery-grid"
-id="galleryGrid">
-
 </div>
+
+<style>
+
+.control-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#16a34a;
+color:white;
+border:none;
+padding:15px 20px;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+z-index:999999;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.dashboard{
+position:fixed;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:#f3f4f6;
+overflow:auto;
+padding:30px;
+transition:.4s;
+z-index:999999;
+}
+
+.dashboard.active{
+left:0;
+}
+
+.dashboard-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.close-dashboard{
+background:red;
+color:white;
+border:none;
+width:40px;
+height:40px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+}
+
+.dashboard-box{
+background:white;
+padding:25px;
+border-radius:18px;
+margin-bottom:25px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.dashboard-box h3{
+margin-bottom:15px;
+color:#16a34a;
+}
+
+</style>
 
 <script>
 
 /* =========================
-صور المستشفى
+فتح وإغلاق لوحة التحكم
 ========================= */
 
-let hospitalImages =
-JSON.parse(localStorage.getItem("hospitalImages")) || [
-
-"https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1200",
-
-"https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200",
-
-"https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200"
-
-];
-
-function saveHospitalImages(){
-
-localStorage.setItem(
-"hospitalImages",
-JSON.stringify(hospitalImages)
-);
-
-}
-
-function renderHospitalImages(){
-
-let gallery =
-document.getElementById("galleryGrid");
-
-gallery.innerHTML = "";
-
-hospitalImages.forEach((img,index)=>{
-
-gallery.innerHTML += `
-
-<div>
-
-<img src="${img}">
-
-<button class="delete-btn"
-onclick="deleteHospitalImage(${index})">
-
-حذف الصورة
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-function addHospitalImages(){
-
-let files =
-document.getElementById("hospitalImages").files;
-
-if(files.length == 0){
-
-alert("اختر صور");
-
-return;
-
-}
-
-Array.from(files).forEach(file=>{
-
-let reader =
-new FileReader();
-
-reader.readAsDataURL(file);
-
-reader.onload = function(e){
-
-hospitalImages.push(e.target.result);
-
-saveHospitalImages();
-
-renderHospitalImages();
-
-};
-
-});
-
-alert("تمت إضافة الصور");
-
-}
-
-/* =========================
-الدكاترة
-========================= */
-
-let doctors =
-JSON.parse(localStorage.getItem("doctors")) || [];
-
-function saveDoctors(){
-
-localStorage.setItem(
-"doctors",
-JSON.stringify(doctors)
-);
-
-}
-
-function renderDoctors(){
-
-let box =
-document.getElementById("doctorsGrid");
-
-box.innerHTML = "";
-
-doctors.forEach((doctor,index)=>{
-
-box.innerHTML += `
-
-<div class="doctor">
-
-<img src="${doctor.image}">
-
-<div class="doctor-content">
-
-<h3>
-${doctor.name}
-</h3>
-
-<p>
-${doctor.job}
-</p>
-
-<button class="delete-btn"
-onclick="deleteDoctor(${index})">
-
-حذف الدكتور
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-function addDoctor(){
-
-let name =
-document.getElementById("doctorName").value;
-
-let job =
-document.getElementById("doctorJob").value;
-
-let image =
-document.getElementById("doctorImage").files[0];
-
-if(!name || !job || !image){
-
-alert("املأ جميع الحقول");
-
-return;
-
-}
-
-let reader =
-new FileReader();
-
-reader.readAsDataURL(image);
-
-reader.onload = function(e){
-
-doctors.push({
-
-name:name,
-job:job,
-image:e.target.result
-
-});
-
-saveDoctors();
-
-renderDoctors();
-
-document.getElementById("doctorName").value="";
-document.getElementById("doctorJob").value="";
-document.getElementById("doctorImage").value="";
-
-alert("تمت إضافة الدكتور");
-
-};
-
-}
-
-function deleteDoctor(index){
-
-if(confirm("هل تريد حذف الدكتور؟")){
-
-doctors.splice(index,1);
-
-saveDoctors();
-
-renderDoctors();
-
-}
-
-}
-
-/* =========================
-حذف صور المستشفى
-========================= */
-
-function deleteHospitalImage(index){
-
-if(confirm("هل تريد حذف الصورة؟")){
-
-hospitalImages.splice(index,1);
-
-saveHospitalImages();
-
-renderHospitalImages();
-
-}
-
-}
-
-/* =========================
-الحجز
-========================= */
-
-function sendBooking(){
-
-let name =
-document.getElementById("name").value;
-
-let phone =
-document.getElementById("phone").value;
-
-let department =
-document.getElementById("department").value;
-
-let details =
-document.getElementById("details").value;
-
-if(
-!name ||
-!phone ||
-!department ||
-!details
-){
-
-alert("املأ جميع الحقول");
-
-return;
-
-}
-
-alert("تم إرسال الحجز بنجاح");
-
-}
-
-/* =========================
-لوحة التحكم
-========================= */
-
-function toggleAdminPanel(){
+function openDashboard(){
 
 document
-.getElementById("adminPanel")
-.classList.toggle("active");
+.getElementById("dashboard")
+.classList.add("active");
 
 }
 
-function changeHospitalName(){
+function closeDashboard(){
 
-let newName =
-prompt("اسم المستشفى الجديد");
+document
+.getElementById("dashboard")
+.classList.remove("active");
 
-if(newName){
+}
+
+/* =========================
+تعديل اسم المستشفى
+========================= */
+
+function updateHospitalName(){
+
+let name =
+document.getElementById("hospitalNameInput").value;
+
+if(name){
 
 document.querySelector(".logo")
 .innerHTML =
-"🏥 " + newName;
+"🏥 " + name;
 
 document.querySelector(".hero-content h1")
 .innerText =
-newName;
+name;
+
+localStorage.setItem(
+"hospitalName",
+name
+);
+
+alert("تم حفظ الاسم");
 
 }
 
 }
 
-function changePhone(){
+/* =========================
+تعديل الرقم
+========================= */
+
+function updatePhone(){
 
 let phone =
-prompt("رقم الهاتف الجديد");
+document.getElementById("phoneInput").value;
 
 if(phone){
 
@@ -413,37 +308,245 @@ document.querySelector(".hero-btn")
 .href =
 "https://wa.me/" + phone;
 
-}
+localStorage.setItem(
+"hospitalPhone",
+phone
+);
+
+alert("تم حفظ الرقم");
 
 }
-
-function changeHeroText(){
-
-let text =
-prompt("النص الجديد");
-
-if(text){
-
-document.querySelector(".hero-content p")
-.innerText =
-text;
-
-}
-
-}
-
-function toggleDarkMode(){
-
-document.body.classList.toggle("dark-mode");
 
 }
 
 /* =========================
-تشغيل الموقع
+الخدمات
 ========================= */
 
-renderDoctors();
+let services =
+JSON.parse(localStorage.getItem("services")) || [];
 
-renderHospitalImages();
+function renderServices(){
+
+let box =
+document.getElementById("servicesContainer");
+
+box.innerHTML = "";
+
+services.forEach((service,index)=>{
+
+box.innerHTML += `
+
+<div class="card">
+
+<h3>
+${service.title}
+</h3>
+
+<p>
+${service.desc}
+</p>
+
+<button class="delete-btn"
+onclick="deleteService(${index})">
+
+حذف
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function addService(){
+
+let title =
+document.getElementById("serviceTitle").value;
+
+let desc =
+document.getElementById("serviceDesc").value;
+
+if(!title || !desc){
+
+alert("املأ الحقول");
+
+return;
+
+}
+
+services.push({
+title,
+desc
+});
+
+localStorage.setItem(
+"services",
+JSON.stringify(services)
+);
+
+renderServices();
+
+alert("تمت إضافة الخدمة");
+
+}
+
+function deleteService(index){
+
+services.splice(index,1);
+
+localStorage.setItem(
+"services",
+JSON.stringify(services)
+);
+
+renderServices();
+
+}
+
+/* =========================
+الأقسام
+========================= */
+
+let departments =
+JSON.parse(localStorage.getItem("departments")) || [];
+
+function renderDepartments(){
+
+let box =
+document.getElementById("departmentsContainer");
+
+box.innerHTML = "";
+
+departments.forEach((dept,index)=>{
+
+box.innerHTML += `
+
+<div class="department">
+
+<h3>
+${dept.title}
+</h3>
+
+<p>
+${dept.desc}
+</p>
+
+<button class="delete-btn"
+onclick="deleteDepartment(${index})">
+
+حذف القسم
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function addDepartment(){
+
+let title =
+document.getElementById("deptTitle").value;
+
+let desc =
+document.getElementById("deptDesc").value;
+
+if(!title || !desc){
+
+alert("املأ الحقول");
+
+return;
+
+}
+
+departments.push({
+title,
+desc
+});
+
+localStorage.setItem(
+"departments",
+JSON.stringify(departments)
+);
+
+renderDepartments();
+
+alert("تمت إضافة القسم");
+
+}
+
+function deleteDepartment(index){
+
+departments.splice(index,1);
+
+localStorage.setItem(
+"departments",
+JSON.stringify(departments)
+);
+
+renderDepartments();
+
+}
+
+/* =========================
+تحميل البيانات
+========================= */
+
+window.onload = function(){
+
+renderServices();
+
+renderDepartments();
+
+let savedName =
+localStorage.getItem("hospitalName");
+
+if(savedName){
+
+document.querySelector(".logo")
+.innerHTML =
+"🏥 " + savedName;
+
+document.querySelector(".hero-content h1")
+.innerText =
+savedName;
+
+}
+
+let savedPhone =
+localStorage.getItem("hospitalPhone");
+
+if(savedPhone){
+
+document.getElementById("footerPhone")
+.innerHTML =
+"📞 " + savedPhone;
+
+document.querySelector(".hero-btn")
+.href =
+"https://wa.me/" + savedPhone;
+
+}
+
+}
 
 </script>
+
+<!-- ضع هذا مكان الخدمات -->
+
+<div class="cards"
+id="servicesContainer">
+</div>
+
+<!-- ضع هذا مكان الأقسام -->
+
+<div class="departments"
+id="departmentsContainer">
+</div>
